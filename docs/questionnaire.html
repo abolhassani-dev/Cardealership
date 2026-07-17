@@ -222,7 +222,7 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
       <li>زیر هر سؤال یک «پاسخ پیشنهادی» هست — این فقط برای کمک است؛ اگر تجربه شما چیز دیگری می‌گوید، حتماً همان را بنویسید.</li>
       <li>وضعیت هر سؤال را مشخص کنید: <span class="chip st-1">پاسخ اولیه</span> <span class="chip st-2">نیازمند بررسی</span> <span class="chip st-3">تصمیم قطعی</span></li>
       <li>پاسخ‌ها <b>خودکار روی دستگاه شما ذخیره می‌شوند</b>؛ نگران پاک شدن نباشید، هر وقت برگردید سر جایشان هستند. فقط با همان مرورگر و دستگاهی که شروع کردید ادامه بدهید.</li>
-      <li>در پایان کار (یا هر چند وقت یک‌بار) دکمه <b>«📤 ارسال پاسخ‌ها برای حمیدرضا»</b> را بزنید و فایل را در واتساپ بفرستید — همین. اگر پیام «ذخیره آنلاین فعال» بالای صفحه روشن باشد، پاسخ‌ها خودکار هم ارسال می‌شوند و نیازی به این دکمه نیست.</li>
+      <li>پاسخ‌ها <b>خودکار به‌صورت آنلاین هم ارسال می‌شوند</b> — بالای پرسشنامه «☁️ ذخیره آنلاین فعال» را می‌بینید و لازم نیست هیچ کاری بکنید. فقط اگر پیام «ذخیره آنلاین در دسترس نیست» ظاهر شد، دکمه «📤 ارسال پاسخ‌ها» نمایان می‌شود؛ آن را بزنید و فایل را در واتساپ برای حمیدرضا بفرستید.</li>
       <li>سؤال‌های <span class="chip pr-crit">حیاتی</span> را حتماً جواب بدهید؛ <span class="chip pr-def">قابل‌تعویق</span>‌ها را می‌شود بعداً جواب داد.</li>
     </ol>
     <div class="note">اگر یک نفر دیگر (مالک شبکه، مسئول مالی و…) باید سؤالی را جواب بدهد، روی همان سؤال نوشته شده «پاسخ‌دهنده پیشنهادی» کیست. مهدی و عرفان می‌توانند برداشت خودشان را بنویسند و وضعیت را «نیازمند بررسی» بزنند.</div>
@@ -461,7 +461,8 @@ function applyRole(){
   }
   document.getElementById('whoWrap').classList.toggle('hidden',!isAdmin());
   document.querySelector('[data-tab="summary"]').classList.toggle('hidden',!isAdmin());
-  document.getElementById('btnImport').classList.toggle('hidden',!isAdmin());
+  ['btnImport','btnExport','btnExportMd','btnPrint'].forEach(id=>document.getElementById(id).classList.toggle('hidden',!isAdmin()));
+  updateShareVisibility();
   const badge=document.getElementById('roleBadgeWrap');
   badge.innerHTML=`<span class="role-badge">${isAdmin()?'حالت مدیر — حمیدرضا':'پاسخ‌دهنده: '+state.role}
     <button type="button" id="btnSwitchRole">تغییر کاربر</button></span>`;
@@ -580,7 +581,16 @@ async function pullAll(){
     return changed;
   }catch(e){setSyncUi('off');return null;}
 }
+/* دکمه ارسال دستی فقط وقتی لازم است که ذخیره آنلاین در دسترس نباشد */
+let lastSyncMode='sync';
+function updateShareVisibility(){
+  const b=document.getElementById('btnShare');
+  if(!b)return;
+  b.classList.toggle('hidden',isAdmin()||lastSyncMode!=='off');
+}
 function setSyncUi(mode){
+  lastSyncMode=mode;
+  updateShareVisibility();
   const el=document.getElementById('syncStatus');
   if(!el)return;
   const t=new Date();
