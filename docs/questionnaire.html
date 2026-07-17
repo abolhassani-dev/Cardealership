@@ -495,7 +495,7 @@ function setAns(qid,patch){
 /* ---------------- cloud sync ----------------
    GS_URL: آدرس /exec وب‌اپ Google Apps Script (پشتیبان اصلی — از ایران در دسترس است).
    اگر خالی باشد، از kvdb.io استفاده می‌شود. */
-const GS_URL='';
+const GS_URL='https://securedgate.xyz/Kv.php';
 const SYNC_BASE='https://kvdb.io/599ML6e8aNVLkQUtxXe4oy/';
 function hexEnc(s){return Array.from(new TextEncoder().encode(s)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 function hexDec(h){try{return new TextDecoder().decode(new Uint8Array(h.match(/../g).map(x=>parseInt(x,16))));}catch(e){return null;}}
