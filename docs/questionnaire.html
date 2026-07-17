@@ -221,7 +221,8 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
       <li>سؤال‌ها را به ترتیب جواب بدهید. جواب کوتاه و واقعی بهتر از جواب کامل و کتابی است. اگر جواب را نمی‌دانید بنویسید «نمی‌دانم» یا «باید از فلانی پرسید».</li>
       <li>زیر هر سؤال یک «پاسخ پیشنهادی» هست — این فقط برای کمک است؛ اگر تجربه شما چیز دیگری می‌گوید، حتماً همان را بنویسید.</li>
       <li>وضعیت هر سؤال را مشخص کنید: <span class="chip st-1">پاسخ اولیه</span> <span class="chip st-2">نیازمند بررسی</span> <span class="chip st-3">تصمیم قطعی</span></li>
-      <li>پاسخ‌ها <b>خودکار ذخیره می‌شوند</b> — هم روی دستگاه شما و هم به‌صورت آنلاین؛ لازم نیست چیزی بفرستید. اگر بالای صفحه پیام «اتصال آنلاین برقرار نشد» دیدید نگران نباشید: پاسخ‌ها روی دستگاه می‌مانَد و به‌محض وصل شدن اینترنت، خودکار ارسال می‌شود. دکمه «خروجی JSON» فقط برای پشتیبان‌گیری اضافه است.</li>
+      <li>پاسخ‌ها <b>خودکار روی دستگاه شما ذخیره می‌شوند</b>؛ نگران پاک شدن نباشید، هر وقت برگردید سر جایشان هستند. فقط با همان مرورگر و دستگاهی که شروع کردید ادامه بدهید.</li>
+      <li>در پایان کار (یا هر چند وقت یک‌بار) دکمه <b>«📤 ارسال پاسخ‌ها برای حمیدرضا»</b> را بزنید و فایل را در واتساپ بفرستید — همین. اگر پیام «ذخیره آنلاین فعال» بالای صفحه روشن باشد، پاسخ‌ها خودکار هم ارسال می‌شوند و نیازی به این دکمه نیست.</li>
       <li>سؤال‌های <span class="chip pr-crit">حیاتی</span> را حتماً جواب بدهید؛ <span class="chip pr-def">قابل‌تعویق</span>‌ها را می‌شود بعداً جواب داد.</li>
     </ol>
     <div class="note">اگر یک نفر دیگر (مالک شبکه، مسئول مالی و…) باید سؤالی را جواب بدهد، روی همان سؤال نوشته شده «پاسخ‌دهنده پیشنهادی» کیست. مهدی و عرفان می‌توانند برداشت خودشان را بنویسند و وضعیت را «نیازمند بررسی» بزنند.</div>
@@ -256,7 +257,8 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
       <div class="progress-note" id="syncStatus"></div>
     </div>
     <div class="btn-row" style="margin-bottom:0">
-      <button class="btn primary" id="btnExport">خروجی JSON (برای ارسال)</button>
+      <button class="btn primary" id="btnShare">📤 ارسال پاسخ‌ها برای حمیدرضا</button>
+      <button class="btn" id="btnExport">خروجی JSON</button>
       <button class="btn" id="btnExportMd">خروجی Markdown</button>
       <button class="btn" id="btnPrint">چاپ / PDF</button>
       <button class="btn" id="btnImport">بارگذاری فایل پاسخ‌ها</button>
@@ -541,9 +543,11 @@ async function pullAll(){
     const data=await res.json();
     const entries=Array.isArray(data)?data.map(e=>Array.isArray(e)?e:[e.key,e.value]):Object.entries(data);
     let changed=false;
+    const sv={};
     for(const[k,vRaw]of entries){
       let v;try{v=typeof vRaw==='string'?JSON.parse(vRaw):vRaw;}catch(e){continue;}
       if(!v||typeof v!=='object')continue;
+      sv[k]=v;
       if(k.startsWith('a_')){
         const parts=k.split('_');
         if(parts.length<3)continue;
@@ -558,6 +562,20 @@ async function pullAll(){
       }
     }
     if(changed)save();
+    /* reconcile: هر پاسخ محلی که روی سرور نیست یا قدیمی‌تر است، برای آپلود علامت بخورد —
+       این تضمین می‌کند اگر بک‌اند بعداً فعال شود، پاسخ‌های قبلی خودکار ارسال شوند. */
+    Object.entries(state.respondents).forEach(([name,answers])=>{
+      Object.entries(answers).forEach(([qid,a])=>{
+        if(!a||!(a.text||'').trim())return;
+        const key='a_'+hexEnc(name)+'_'+qid;
+        if(!sv[key]||(sv[key].updatedAt||0)<(a.updatedAt||0))markDirty(key,a);
+      });
+    });
+    Object.entries(state.decisions).forEach(([qid,d])=>{
+      if(!d||!((d.text||'').trim()||d.done))return;
+      const key='d_'+qid;
+      if(!sv[key]||(sv[key].updatedAt||0)<(d.updatedAt||0))markDirty(key,d);
+    });
     setSyncUi('ok');
     return changed;
   }catch(e){setSyncUi('off');return null;}
@@ -569,7 +587,7 @@ function setSyncUi(mode){
   const hhmm=String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0');
   if(mode==='ok')el.innerHTML='<span style="color:var(--ok);font-weight:700">☁️ ذخیره آنلاین فعال</span> <span style="color:var(--muted)">— آخرین همگام‌سازی '+hhmm+'</span>';
   else if(mode==='sync')el.innerHTML='<span style="color:var(--muted)">در حال همگام‌سازی…</span>';
-  else el.innerHTML='<span style="color:var(--warn);font-weight:700">⚠️ اتصال آنلاین برقرار نشد</span> <span style="color:var(--muted)">— پاسخ‌ها روی همین دستگاه ذخیره شد و به‌محض وصل شدن، خودکار ارسال می‌شود</span>';
+  else el.innerHTML='<span style="color:var(--warn);font-weight:700">⚠️ ذخیره آنلاین در دسترس نیست</span> <span style="color:var(--muted)">— نگران نباشید: پاسخ‌ها روی همین دستگاه ذخیره می‌شود؛ در پایان دکمه «📤 ارسال پاسخ‌ها» را بزنید</span>';
 }
 
 /* ---------------- tabs ---------------- */
@@ -767,6 +785,16 @@ function exportJson(){
 }
 document.getElementById('btnExport').onclick=exportJson;
 document.getElementById('btnExport2').onclick=exportJson;
+document.getElementById('btnShare').onclick=async()=>{
+  const payload=JSON.stringify(state,null,2);
+  const file=new File([payload],'car-network-answers.json',{type:'application/json'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    try{await navigator.share({files:[file],title:'پاسخ‌های پرسشنامه'});return;}
+    catch(e){if(e&&e.name==='AbortError')return;}
+  }
+  download('car-network-answers.json',payload,'application/json');
+  alert('فایل پاسخ‌ها دانلود شد — آن را در واتساپ یا تلگرام برای حمیدرضا بفرستید.');
+};
 document.getElementById('btnExportMd').onclick=()=>{
   const names=Object.keys(state.respondents);
   let md='# پرسشنامه پروژه شبکه تبادل خودرو\n\n';
