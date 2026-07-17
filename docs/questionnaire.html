@@ -221,7 +221,7 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
       <li>سؤال‌ها را به ترتیب جواب بدهید. جواب کوتاه و واقعی بهتر از جواب کامل و کتابی است. اگر جواب را نمی‌دانید بنویسید «نمی‌دانم» یا «باید از فلانی پرسید».</li>
       <li>زیر هر سؤال یک «پاسخ پیشنهادی» هست — این فقط برای کمک است؛ اگر تجربه شما چیز دیگری می‌گوید، حتماً همان را بنویسید.</li>
       <li>وضعیت هر سؤال را مشخص کنید: <span class="chip st-1">پاسخ اولیه</span> <span class="chip st-2">نیازمند بررسی</span> <span class="chip st-3">تصمیم قطعی</span></li>
-      <li>پاسخ‌ها <b>روی همین مرورگر و همین دستگاه</b> ذخیره می‌شوند. در پایان از دکمه «خروجی JSON» فایل بگیرید و برای حمیدرضا بفرستید تا پاسخ‌ها مقایسه شوند.</li>
+      <li>پاسخ‌ها <b>خودکار ذخیره می‌شوند</b> — هم روی دستگاه شما و هم به‌صورت آنلاین؛ لازم نیست چیزی بفرستید. اگر بالای صفحه پیام «اتصال آنلاین برقرار نشد» دیدید نگران نباشید: پاسخ‌ها روی دستگاه می‌مانَد و به‌محض وصل شدن اینترنت، خودکار ارسال می‌شود. دکمه «خروجی JSON» فقط برای پشتیبان‌گیری اضافه است.</li>
       <li>سؤال‌های <span class="chip pr-crit">حیاتی</span> را حتماً جواب بدهید؛ <span class="chip pr-def">قابل‌تعویق</span>‌ها را می‌شود بعداً جواب داد.</li>
     </ol>
     <div class="note">اگر یک نفر دیگر (مالک شبکه، مسئول مالی و…) باید سؤالی را جواب بدهد، روی همان سؤال نوشته شده «پاسخ‌دهنده پیشنهادی» کیست. مهدی و عرفان می‌توانند برداشت خودشان را بنویسند و وضعیت را «نیازمند بررسی» بزنند.</div>
@@ -253,6 +253,7 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar"></div>
       <div class="progress-note" id="progressNote"></div>
+      <div class="progress-note" id="syncStatus"></div>
     </div>
     <div class="btn-row" style="margin-bottom:0">
       <button class="btn primary" id="btnExport">خروجی JSON (برای ارسال)</button>
@@ -270,7 +271,7 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
   <div class="doc">
     <h2>جمع‌بندی و مقایسه پاسخ‌ها</h2>
     <p>اینجا پاسخ‌های همه پاسخ‌دهنده‌ها کنار هم دیده می‌شود. اگر دو نفر جواب متفاوت داده باشند، سؤال با برچسب <span class="chip conflict">تضاد پاسخ</span> مشخص می‌شود. برای هر سؤال می‌توانید «تصمیم نهایی» را ثبت کنید — فهرست تصمیم‌های ثبت‌شده در پایین به‌عنوان Decision Log جمع می‌شود.</p>
-    <p style="font-size:13px;color:var(--muted)">برای دیدن پاسخ‌های نفر دوم روی همین دستگاه، فایل JSON او را از بخش پرسشنامه با «بارگذاری فایل پاسخ‌ها» وارد کنید.</p>
+    <p style="font-size:13px;color:var(--muted)">پاسخ‌های مهدی و عرفان خودکار از فضای آنلاین خوانده می‌شود؛ برای دیدن آخرین پاسخ‌ها دکمه «به‌روزرسانی پاسخ‌ها» را بزنید. «بارگذاری فایل پاسخ‌ها» فقط برای حالت پشتیبان است.</p>
   </div>
   <div class="summary-band" id="sumBand"></div>
   <div class="btn-row">
@@ -278,6 +279,7 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
     <button class="btn" id="fltConf">فقط تضادها</button>
     <button class="btn" id="fltOpen">موارد باز (بی‌تصمیم)</button>
     <button class="btn" id="fltDec">Decision Log</button>
+    <button class="btn" id="btnRefresh">🔄 به‌روزرسانی پاسخ‌ها</button>
     <button class="btn primary" id="btnExport2">خروجی JSON کامل</button>
   </div>
   <div id="cmpList"></div>
@@ -449,8 +451,77 @@ function ans(resp,qid){return (state.respondents[resp]||{})[qid]||{text:'',statu
 function setAns(qid,patch){
   const r=state.current;
   if(!state.respondents[r])state.respondents[r]={};
-  state.respondents[r][qid]={...ans(r,qid),...patch};
+  const v={...ans(r,qid),...patch,updatedAt:Date.now()};
+  state.respondents[r][qid]=v;
+  markDirty('a_'+hexEnc(r)+'_'+qid,v);
   save();
+}
+
+/* ---------------- cloud sync (kvdb.io) ---------------- */
+const SYNC_BASE='https://kvdb.io/599ML6e8aNVLkQUtxXe4oy/';
+function hexEnc(s){return Array.from(new TextEncoder().encode(s)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+function hexDec(h){try{return new TextDecoder().decode(new Uint8Array(h.match(/../g).map(x=>parseInt(x,16))));}catch(e){return null;}}
+function fetchT(url,opts,ms){
+  const ctl=new AbortController();
+  const t=setTimeout(()=>ctl.abort(),ms||10000);
+  return fetch(url,{...(opts||{}),signal:ctl.signal}).finally(()=>clearTimeout(t));
+}
+if(!state.dirty)state.dirty={};
+let flushT=null;
+function markDirty(key,payload){state.dirty[key]=payload;save();scheduleFlush();}
+function scheduleFlush(){clearTimeout(flushT);flushT=setTimeout(flush,2500);}
+async function flush(){
+  const keys=Object.keys(state.dirty||{});
+  if(!keys.length)return;
+  setSyncUi('sync');
+  let okAll=true;
+  for(const k of keys){
+    try{
+      const res=await fetchT(SYNC_BASE+k,{method:'PUT',body:JSON.stringify(state.dirty[k])});
+      if(!res.ok)throw 0;
+      delete state.dirty[k];
+    }catch(e){okAll=false;break;}
+  }
+  save();
+  setSyncUi(okAll?'ok':'off');
+  if(!okAll){clearTimeout(flushT);flushT=setTimeout(flush,15000);}
+}
+async function pullAll(){
+  try{
+    const res=await fetchT(SYNC_BASE+'?values=true&format=json&limit=1000',{cache:'no-store'},12000);
+    if(!res.ok)throw 0;
+    const data=await res.json();
+    const entries=Array.isArray(data)?data.map(e=>Array.isArray(e)?e:[e.key,e.value]):Object.entries(data);
+    let changed=false;
+    for(const[k,vRaw]of entries){
+      let v;try{v=typeof vRaw==='string'?JSON.parse(vRaw):vRaw;}catch(e){continue;}
+      if(!v||typeof v!=='object')continue;
+      if(k.startsWith('a_')){
+        const parts=k.split('_');
+        if(parts.length<3)continue;
+        const name=hexDec(parts[1]),qid=parts[2];
+        if(!name)continue;
+        if(!state.respondents[name]){state.respondents[name]={};changed=true;}
+        const cur=state.respondents[name][qid];
+        if(!cur||(v.updatedAt||0)>(cur.updatedAt||0)){state.respondents[name][qid]=v;changed=true;}
+      }else if(k.startsWith('d_')){
+        const qid=k.slice(2),cur=state.decisions[qid];
+        if(!cur||(v.updatedAt||0)>(cur.updatedAt||0)){state.decisions[qid]=v;changed=true;}
+      }
+    }
+    if(changed)save();
+    setSyncUi('ok');
+    return changed;
+  }catch(e){setSyncUi('off');return null;}
+}
+function setSyncUi(mode){
+  const el=document.getElementById('syncStatus');
+  if(!el)return;
+  const t=new Date();
+  const hhmm=String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0');
+  if(mode==='ok')el.innerHTML='<span style="color:var(--ok);font-weight:700">☁️ ذخیره آنلاین فعال</span> <span style="color:var(--muted)">— آخرین همگام‌سازی '+hhmm+'</span>';
+  else if(mode==='sync')el.innerHTML='<span style="color:var(--muted)">در حال همگام‌سازی…</span>';
+  else el.innerHTML='<span style="color:var(--warn);font-weight:700">⚠️ اتصال آنلاین برقرار نشد</span> <span style="color:var(--muted)">— پاسخ‌ها روی همین دستگاه ذخیره شد و به‌محض وصل شدن، خودکار ارسال می‌شود</span>';
 }
 
 /* ---------------- tabs ---------------- */
@@ -458,7 +529,7 @@ const tabs=document.querySelectorAll('.tab');
 tabs.forEach(b=>b.addEventListener('click',()=>{
   tabs.forEach(x=>x.classList.remove('active'));b.classList.add('active');
   ['intro','quiz','summary'].forEach(t=>document.getElementById('tab-'+t).classList.toggle('hidden',t!==b.dataset.tab));
-  if(b.dataset.tab==='summary')renderSummary();
+  if(b.dataset.tab==='summary'){renderSummary();pullAll().then(ch=>{if(ch)renderSummary();});}
   if(b.dataset.tab==='quiz')renderProgress();
 }));
 
@@ -574,6 +645,7 @@ let sumFilter='all';
 ['fltAll','fltConf','fltOpen','fltDec'].forEach((id,ix)=>{
   document.getElementById(id).onclick=()=>{sumFilter=['all','conf','open','dec'][ix];renderSummary();};
 });
+document.getElementById('btnRefresh').onclick=async()=>{await pullAll();renderSummary();};
 function conflictOf(q){
   const texts=Object.keys(state.respondents).map(r=>ans(r,q.id).text.trim()).filter(Boolean);
   return texts.length>=2 && new Set(texts).size>1;
@@ -624,9 +696,13 @@ function renderSummary(){
         </div>
       </div>`;
     const ta=card.querySelector('.decision textarea');
-    ta.addEventListener('input',()=>{state.decisions[q.id]={...(state.decisions[q.id]||{done:false}),text:ta.value};save();});
+    ta.addEventListener('input',()=>{
+      const v={...(state.decisions[q.id]||{done:false}),text:ta.value,updatedAt:Date.now()};
+      state.decisions[q.id]=v;markDirty('d_'+q.id,v);save();
+    });
     card.querySelector(`#dc-${q.id}`).addEventListener('change',e=>{
-      state.decisions[q.id]={...(state.decisions[q.id]||{text:''}),done:e.target.checked};save();renderSummary();
+      const v={...(state.decisions[q.id]||{text:''}),done:e.target.checked,updatedAt:Date.now()};
+      state.decisions[q.id]=v;markDirty('d_'+q.id,v);save();renderSummary();
     });
     list.appendChild(card);
   });
@@ -671,11 +747,17 @@ document.getElementById('fileImport').addEventListener('change',e=>{
         if(!state.respondents[name])state.respondents[name]={};
         Object.entries(answers).forEach(([qid,a])=>{
           const cur=state.respondents[name][qid];
-          if(!cur||!cur.text.trim()||(a.text&&a.text.trim()))state.respondents[name][qid]=a;
+          if(!cur||!(cur.text||'').trim()||(a.text&&a.text.trim())){
+            state.respondents[name][qid]=a;
+            markDirty('a_'+hexEnc(name)+'_'+qid,a);
+          }
         });
       });
       Object.entries(inc.decisions||{}).forEach(([qid,d])=>{
-        if(!(state.decisions[qid]&&state.decisions[qid].text.trim()))state.decisions[qid]=d;
+        if(!(state.decisions[qid]&&(state.decisions[qid].text||'').trim())){
+          state.decisions[qid]=d;
+          markDirty('d_'+qid,d);
+        }
       });
       save();renderQuiz();
       alert('پاسخ‌ها با موفقیت وارد و ادغام شد.');
@@ -690,4 +772,12 @@ const hashRole=HASH_ROLES[(location.hash||'').toLowerCase()];
 if(hashRole)state.role=hashRole;
 renderQuiz();
 applyRole();
+
+/* startup sync: pull latest answers, then push anything pending from last session */
+setSyncUi('sync');
+pullAll().then(changed=>{
+  if(changed){renderQuiz();if(!document.getElementById('tab-summary').classList.contains('hidden'))renderSummary();}
+  scheduleFlush();
+});
+window.addEventListener('online',()=>scheduleFlush());
 </script>
