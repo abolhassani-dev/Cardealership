@@ -130,7 +130,8 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
 .decision textarea{width:100%;min-height:44px;border:1px solid var(--border);background:var(--bg);border-radius:9px;padding:8px 11px;resize:vertical}
 .decision .drow{display:flex;gap:8px;align-items:center;margin-top:6px}
 .summary-band{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0}
-.stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center}
+.stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center;cursor:pointer}
+.stat-tile:hover{border-color:var(--accent)}
 .stat-tile .n{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
 .stat-tile .l{font-size:12px;color:var(--muted)}
 
@@ -282,8 +283,9 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
     <button class="btn" id="fltOpen">موارد باز (بی‌تصمیم)</button>
     <button class="btn" id="fltDec">Decision Log</button>
     <button class="btn" id="btnRefresh">🔄 به‌روزرسانی پاسخ‌ها</button>
-    <button class="btn primary" id="btnExport2">خروجی JSON کامل</button>
+    <button class="btn" id="btnExport2">خروجی JSON کامل</button>
   </div>
+  <div id="cmpHead" class="progress-note" style="margin:2px 0 6px;font-weight:700"></div>
   <div id="cmpList"></div>
 </div>
 </div>
@@ -719,7 +721,11 @@ function renderProgress(){
 /* ---------------- summary / compare ---------------- */
 let sumFilter='all';
 ['fltAll','fltConf','fltOpen','fltDec'].forEach((id,ix)=>{
-  document.getElementById(id).onclick=()=>{sumFilter=['all','conf','open','dec'][ix];renderSummary();};
+  document.getElementById(id).onclick=()=>{
+    sumFilter=['all','conf','open','dec'][ix];
+    renderSummary();
+    document.getElementById('cmpHead').scrollIntoView({behavior:'smooth',block:'center'});
+  };
 });
 document.getElementById('btnRefresh').onclick=async()=>{await pullAll();renderSummary();};
 function conflictOf(q){
@@ -734,17 +740,30 @@ function renderSummary(){
   const open=ALLQ.filter(q=>!(state.decisions[q.id]||{}).done && (!anyAnswer(q)||conflictOf(q)||names.some(r=>ans(r,q.id).status===2)));
   const band=document.getElementById('sumBand');
   band.innerHTML=[
-    [ALLQ.length,'کل سؤال‌ها',''],
-    [ALLQ.filter(anyAnswer).length,'دارای پاسخ','var(--info)'],
-    [conf.length,'تضاد پاسخ','var(--crit)'],
-    [decided.length,'تصمیم نهایی ثبت‌شده','var(--ok)'],
-    [open.length,'موارد باز','var(--warn)'],
-  ].map(([n,l,c])=>`<div class="stat-tile"><div class="n" style="color:${c||'var(--ink)'}">${n}</div><div class="l">${l}</div></div>`).join('');
+    [ALLQ.length,'کل سؤال‌ها','','all'],
+    [ALLQ.filter(anyAnswer).length,'دارای پاسخ','var(--info)','all'],
+    [conf.length,'تضاد پاسخ','var(--crit)','conf'],
+    [decided.length,'تصمیم نهایی ثبت‌شده','var(--ok)','dec'],
+    [open.length,'موارد باز','var(--warn)','open'],
+  ].map(([n,l,c,f])=>`<div class="stat-tile" data-f="${f}" role="button" tabindex="0"><div class="n" style="color:${c||'var(--ink)'}">${n}</div><div class="l">${l}</div></div>`).join('');
+  band.querySelectorAll('.stat-tile').forEach(t=>{
+    t.onclick=()=>{sumFilter=t.dataset.f;renderSummary();document.getElementById('cmpHead').scrollIntoView({behavior:'smooth',block:'center'});};
+  });
+
+  /* دکمه فیلتر فعال + شمارنده روی هر دکمه */
+  const fcounts={all:ALLQ.length,conf:conf.length,open:open.length,dec:decided.length};
+  [['fltAll','همه سؤال‌ها','all'],['fltConf','فقط تضادها','conf'],['fltOpen','موارد باز (بی‌تصمیم)','open'],['fltDec','Decision Log','dec']].forEach(([id,label,f])=>{
+    const b=document.getElementById(id);
+    b.textContent=`${label} (${fcounts[f]})`;
+    b.classList.toggle('primary',sumFilter===f);
+  });
 
   let qs=ALLQ;
   if(sumFilter==='conf')qs=conf;
   if(sumFilter==='open')qs=open;
   if(sumFilter==='dec')qs=decided;
+  const fname={all:'همه سؤال‌ها',conf:'فقط تضادها',open:'موارد باز (بی‌تصمیم)',dec:'تصمیم‌های نهایی (Decision Log)'}[sumFilter];
+  document.getElementById('cmpHead').textContent=`در حال نمایش: ${fname} — ${qs.length} سؤال`;
   const list=document.getElementById('cmpList');list.innerHTML='';
   if(!qs.length){list.innerHTML='<p class="empty-note">موردی در این دسته نیست.</p>';return;}
   qs.forEach(q=>{
