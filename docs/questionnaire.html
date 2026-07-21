@@ -294,6 +294,18 @@ details.sug p{margin:6px 0 2px;font-size:13.5px;color:var(--muted)}
 document.documentElement.setAttribute('lang','fa');
 document.documentElement.setAttribute('dir','rtl');
 
+/* هر خطای فنی به‌جای شکستن بی‌صدای صفحه، بالای صفحه نمایش داده شود */
+function showFatal(msg){
+  try{
+    const d=document.createElement('div');
+    d.style.cssText='background:#f9e9ec;color:#b4364a;padding:8px 12px;border-radius:8px;margin:8px 0;font-size:12px;direction:ltr;text-align:left;word-break:break-all';
+    d.textContent='خطای فنی (این را برای حمیدرضا بفرستید): '+msg;
+    document.getElementById('app').prepend(d);
+  }catch(e){}
+}
+window.addEventListener('error',ev=>showFatal(ev.message+' @'+(ev.lineno||'?')));
+window.addEventListener('unhandledrejection',ev=>showFatal(String(ev.reason&&ev.reason.message||ev.reason)));
+
 /* ---------------- data ---------------- */
 const PR = {'حیاتی':'pr-crit','مهم':'pr-imp','قابل‌تعویق':'pr-def'};
 const ST = ['بی‌پاسخ','پاسخ اولیه','نیازمند بررسی','تصمیم قطعی'];
@@ -767,40 +779,54 @@ function renderSummary(){
   const list=document.getElementById('cmpList');list.innerHTML='';
   if(!qs.length){list.innerHTML='<p class="empty-note">موردی در این دسته نیست.</p>';return;}
   qs.forEach(q=>{
-    const d=state.decisions[q.id]||{text:'',done:false};
-    const card=document.createElement('div');card.className='cmp-card';
-    card.innerHTML=`
-      <div class="meta" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px">
-        <span class="chip ${PR[q.pr]}">${q.pr}</span>
-        ${conflictOf(q)?'<span class="chip conflict">تضاد پاسخ</span>':''}
-        ${d.done?'<span class="chip st-3">تصمیم نهایی</span>':''}
-        <span class="qid" style="margin-inline-start:auto;font-size:11.5px;color:var(--muted)">${q.section}</span>
-      </div>
-      <h3>${q.t}</h3>
-      <p style="font-size:13px;color:var(--muted);margin:2px 0 6px">${q.q}</p>
-      ${Object.keys(state.respondents).map(r=>{
-        const a=ans(r,q.id);
-        return `<div class="cmp-ans"><span class="who">${r}:</span> ${a.text.trim()?esc(a.text):'<span class="empty">بدون پاسخ</span>'} ${a.text.trim()?`<span class="chip st-${a.status}" style="margin-inline-start:6px">${ST[a.status]}</span>`:''}</div>`;
-      }).join('')}
-      <div class="decision">
-        <label style="font-size:12.5px;font-weight:700;color:var(--muted)">تصمیم نهایی (حمیدرضا / جلسه مشترک):</label>
-        <textarea placeholder="جمع‌بندی و تصمیم…">${esc(d.text)}</textarea>
-        <div class="drow">
-          <input type="checkbox" id="dc-${q.id}" ${d.done?'checked':''}>
-          <label for="dc-${q.id}" style="font-size:13px">این تصمیم قطعی شد</label>
-        </div>
-      </div>`;
-    const ta=card.querySelector('.decision textarea');
-    ta.addEventListener('input',()=>{
-      const v={...(state.decisions[q.id]||{done:false}),text:ta.value,updatedAt:Date.now()};
-      state.decisions[q.id]=v;markDirty('d_'+q.id,v);save();
-    });
-    card.querySelector(`#dc-${q.id}`).addEventListener('change',e=>{
-      const v={...(state.decisions[q.id]||{text:''}),done:e.target.checked,updatedAt:Date.now()};
-      state.decisions[q.id]=v;markDirty('d_'+q.id,v);save();renderSummary();
-    });
-    list.appendChild(card);
+    try{list.appendChild(cmpCard(q));}
+    catch(e){showFatal('سؤال '+q.id+': '+e.message);}
   });
+}
+function cmpCard(q){
+  const d=state.decisions[q.id]||{text:'',done:false};
+  const card=document.createElement('div');card.className='cmp-card';
+  card.innerHTML=`
+    <div class="meta" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px">
+      <span class="chip ${PR[q.pr]}">${q.pr}</span>
+      ${conflictOf(q)?'<span class="chip conflict">تضاد پاسخ</span>':''}
+      ${d.done?'<span class="chip st-3">تصمیم نهایی</span>':''}
+      <span class="qid" style="margin-inline-start:auto;font-size:11.5px;color:var(--muted)">${q.section} — ${q.id.replace('q','سؤال ')}</span>
+    </div>
+    <h3>${q.t}</h3>
+    ${q.sc?`<div class="scenario"><b>سناریو:</b> ${q.sc}</div>`:''}
+    <p class="qtext">${q.q}</p>
+    ${q.sug?`<details class="sug"><summary>پاسخ پیشنهادی (فقط برای کمک)</summary><p>${q.sug}</p></details>`:''}
+    ${Object.keys(state.respondents).map(r=>{
+      const a=ans(r,q.id);
+      const t=(a.text||'').trim();
+      return `<div class="cmp-ans"><span class="who">${r}:</span> ${t?esc(a.text):'<span class="empty">بدون پاسخ</span>'} ${t?`<span class="chip st-${a.status||0}" style="margin-inline-start:6px">${ST[a.status||0]}</span>`:''}</div>`;
+    }).join('')}
+    <div class="decision">
+      <label style="font-size:12.5px;font-weight:700;color:var(--muted)">تصمیم نهایی (جلسه مشترک):</label>
+      <textarea placeholder="جمع‌بندی و تصمیم…">${esc(d.text)}</textarea>
+      <div class="drow">
+        <input type="checkbox" id="dc-${q.id}" ${d.done?'checked':''}>
+        <label for="dc-${q.id}" style="font-size:13px">این تصمیم قطعی شد</label>
+      </div>
+    </div>`;
+  const ta=card.querySelector('.decision textarea');
+  ta.addEventListener('input',()=>{
+    const v={...(state.decisions[q.id]||{done:false}),text:ta.value,updatedAt:Date.now()};
+    state.decisions[q.id]=v;markDirty('d_'+q.id,v);save();
+  });
+  card.querySelector(`#dc-${q.id}`).addEventListener('change',e=>{
+    const v={...(state.decisions[q.id]||{text:''}),done:e.target.checked,updatedAt:Date.now()};
+    state.decisions[q.id]=v;markDirty('d_'+q.id,v);save();
+    const chipRow=card.querySelector('.meta');
+    if(e.target.checked&&!chipRow.querySelector('.st-3')){
+      const c=document.createElement('span');c.className='chip st-3';c.textContent='تصمیم نهایی';
+      chipRow.insertBefore(c,chipRow.querySelector('.qid'));
+    }else if(!e.target.checked){
+      const c=chipRow.querySelector('.chip.st-3');if(c)c.remove();
+    }
+  });
+  return card;
 }
 
 /* ---------------- export / import ---------------- */
