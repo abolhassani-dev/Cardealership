@@ -19,6 +19,18 @@
     --ok:#63c68d; --ok-soft:#16301f;
   }
 }
+:root[data-theme="dark"]{
+  --bg:#101820; --surface:#1a242e; --surface2:#141d26; --ink:#e6edf3; --muted:#93a4b3;
+  --border:#2b3946; --accent:#43b7d4; --accent-soft:#12313c; --accent-ink:#7fd3e8;
+  --crit:#e07488; --crit-soft:#3a2129; --warn:#d9a94e; --warn-soft:#33290f;
+  --ok:#63c68d; --ok-soft:#16301f;
+}
+:root[data-theme="light"]{
+  --bg:#f2f5f7; --surface:#ffffff; --surface2:#e9eef2; --ink:#182430; --muted:#5b6c7b;
+  --border:#d7e0e7; --accent:#0e7490; --accent-soft:#e0f1f5; --accent-ink:#0b5b71;
+  --crit:#b4364a; --crit-soft:#f9e9ec; --warn:#9a6a10; --warn-soft:#f7efdc;
+  --ok:#2e7d4f; --ok-soft:#e4f2e9;
+}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:Vazirmatn,"IRANSansX","Segoe UI",Tahoma,Arial,sans-serif;line-height:2;margin:0;font-size:15px}
 #app{max-width:860px;margin:0 auto;padding:0 14px 90px}
@@ -85,6 +97,7 @@ th{background:var(--surface2);color:var(--accent-ink)}
     <span id="pnote">۰ مورد بررسی شده</span>
     <span id="syncStatus"></span>
     <span style="margin-inline-start:auto"></span>
+    <button class="btn" id="btnTheme" title="تغییر حالت روشن/تیره">🌙</button>
     <button class="btn" id="btnPrint">چاپ / PDF</button>
     <button class="btn" id="btnShare">📤 ارسال نظرات</button>
   </div>
@@ -576,6 +589,24 @@ function refreshProgress(){
   document.getElementById('finalCount').textContent=done===total?'همه موارد بررسی شد — دست‌تان درد نکند! ✅':`${total-done} مورد مانده است.`;
 }
 refreshProgress();
+
+/* ---------- theme toggle ---------- */
+const THEME_KEY='review-theme';
+function effTheme(){
+  const t=localStorage.getItem(THEME_KEY);
+  if(t)return t;
+  return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+}
+function applyTheme(t){
+  document.documentElement.dataset.theme=t;
+  document.getElementById('btnTheme').textContent=t==='dark'?'☀️':'🌙';
+}
+document.getElementById('btnTheme').onclick=()=>{
+  const next=effTheme()==='dark'?'light':'dark';
+  localStorage.setItem(THEME_KEY,next);
+  applyTheme(next);
+};
+applyTheme(effTheme());
 
 /* ---------- toolbar ---------- */
 document.getElementById('btnPrint').onclick=()=>window.print();
