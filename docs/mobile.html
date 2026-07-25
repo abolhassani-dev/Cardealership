@@ -147,10 +147,12 @@ a{color:#84C6E8;text-decoration:none}
 .cap{font-size:12px;color:var(--muted)}
 .muted{color:var(--muted)}.faint{color:var(--faint)}.xs{font-size:11.5px}.sm{font-size:13px}.b{font-weight:700}.eb{font-weight:800}
 .kpi{position:relative;overflow:hidden}
+.kpi:has(.spark),.kpi:has(.bars){padding-bottom:46px;min-height:126px}
 .kpi .l{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.02em}
 .kpi .v{font-size:32px;font-weight:800;letter-spacing:-.035em;line-height:1.25;margin-top:2px}
 .kpi .d{font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px;margin-top:2px}
-.kpi .spark{position:absolute;inset-inline-start:0;bottom:0;width:100%;height:38px;opacity:.85;pointer-events:none}
+.kpi .spark{position:absolute;inset-inline-start:0;bottom:0;width:100%;height:40px;pointer-events:none;display:block}
+.kpi .d{position:relative;z-index:1}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:7px;padding:3px 10px;font-size:11.5px;font-weight:700;white-space:nowrap;border:1px solid transparent}
 .pill.ok{background:var(--ok-soft);color:var(--ok);border-color:#CFE5DA}
 .pill.warn{background:var(--warn-soft);color:var(--warn);border-color:#EFDCB8}
@@ -424,6 +426,7 @@ const REFS={
  havaleh:['حواله','«مهم‌ترین فعالیت این روزها فروختن حواله‌ست؛ از خود ماشین راحت‌تر فروش می‌رود». انتقال حواله هزینه‌ای ندارد و مدارکش: سخا، شناسنامه، کارت ملی، گواهی امضا.'],
  insurance:['بیمه حمل اجباری','پاسخ شما: بیمه حمل «اجباری» است؛ خودروبر از طرف خریدار و مسئولیت مسیر هم با اوست چون کارشناسی در محل انجام می‌شود.'],
  force:['الزام + پاداش','«الزام مدیریت مجموعه و وابسته کردن پاداش کارکنان به نتایج سیستم» — بخشنامه تنها کافی نیست.'],
+ age:['توقف در انبار','این عدد می‌گوید هر خودرو چند روز است که فروش نرفته و در پارکینگ مانده. هرچه بیشتر باشد، پول بیشتری خوابیده است — و در انتخاب تأمین‌کننده هم دیده می‌شود. بالای ۳۰ روز یعنی راکد.'],
  pilot:['هدف دوره آزمایشی','برآورد واقع‌بینانه شما: «۳ ماه اول شاید ۱۰ معامله کلاً انجام شود».']
 };
 
@@ -461,10 +464,17 @@ function val(m,name){return m.querySelector(`[name="${name}"]`)?.value ?? ''}
 
 /* ═════════ اجزای ساخت ═════════ */
 function spark(points,color,fill){
-  const w=240,h=38,mx=Math.max(...points),mn=Math.min(...points),rg=(mx-mn)||1;
-  const pts=points.map((p,i)=>[i*(w/(points.length-1)),h-4-((p-mn)/rg)*(h-12)]);
+  const w=240,h=40,pad=6;
+  const mx=Math.max(...points),mn=Math.min(...points),rg=(mx-mn)||1;
+  const flat=(mx===mn);
+  const y=p=>flat?h-pad-6:h-pad-((p-mn)/rg)*(h-pad*2-4);
+  const pts=points.map((p,i)=>[i*(w/(points.length-1)),y(p)]);
   const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
-  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${d} L${w} ${h} L0 ${h} Z" fill="${fill}"/><path d="${d}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const last=pts[pts.length-1];
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+    <path d="${d} L${w} ${h} L0 ${h} Z" fill="${fill}"/>
+    <path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  </svg>`;
 }
 function bars(data,color){
   const mx=Math.max(...data.map(d=>d[1]))||1;
