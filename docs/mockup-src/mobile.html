@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>نسخه موبایل — شبکه تبادل خودرو</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>/*__FONT__*/
+/*__CSS__*/
+/* ═══ ویژه موبایل ═══ */
+.stage2{display:grid;grid-template-columns:270px 1fr;gap:24px;align-items:start}
+.stage2>*{min-width:0}
+@media(max-width:900px){.stage2{grid-template-columns:1fr;gap:16px}}
+.steps{display:flex;flex-direction:column;gap:6px}
+.steps .lbl{font-size:10px;letter-spacing:.1em;color:var(--stage-muted);margin:2px 2px 5px;font-weight:700}
+.step{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--stage-line);color:var(--stage-muted);
+  border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;text-align:right;min-height:46px;transition:.18s;width:100%}
+.step:hover{border-color:#31485C;background:rgba(255,255,255,.06);color:var(--stage-ink)}
+.step[aria-current="true"]{background:var(--stage-ink);border-color:var(--stage-ink);color:var(--stage)}
+.step .n{width:21px;height:21px;border-radius:6px;display:grid;place-items:center;font-size:11px;background:rgba(255,255,255,.09);flex:none}
+.step[aria-current="true"] .n{background:rgba(12,27,41,.12)}
+@media(max-width:900px){.steps{flex-direction:row;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.steps::-webkit-scrollbar{display:none}
+  .steps .lbl{display:none}.step{white-space:nowrap;width:auto}}
+.phone{width:382px;max-width:100%;margin:0 auto;background:#04080C;border-radius:44px;padding:11px;
+  box-shadow:var(--sh-3),0 0 0 1px rgba(255,255,255,.07)}
+.screen{background:var(--bg);border-radius:34px;overflow:hidden;height:760px;display:flex;flex-direction:column;color:var(--ink);position:relative}
+@media(max-width:440px){.phone{padding:8px;border-radius:34px}.screen{height:640px;border-radius:27px}.wrap{padding-inline:12px}}
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:10px 22px 4px;font-size:11.5px;font-weight:700;flex:none;background:var(--surface)}
+.mbar{display:flex;align-items:center;gap:10px;padding:4px 15px 12px;flex:none;background:var(--surface);border-bottom:1px solid var(--line)}
+.mbar h2{font-size:15.5px;font-weight:800;flex:1;min-width:0}
+.mbar .sub{font-size:11px;color:var(--faint);margin-top:-3px}
+.mbody{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+.mbody::-webkit-scrollbar{width:0}
+.mfoot{flex:none;background:var(--surface);border-top:1px solid var(--line);padding:11px 14px 15px;display:flex;flex-direction:column;gap:8px}
+.tile{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px;width:100%;
+  text-align:right;transition:.18s;min-height:64px;color:var(--ink);box-shadow:var(--sh-1)}
+.tile:hover{border-color:var(--accent-line);box-shadow:var(--sh-2)}
+.tile .ic{width:42px;height:42px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none;border:1px solid var(--accent-line)}
+.tile .ic.n{background:var(--bg-2);color:var(--navy);border-color:var(--line)}
+.mthumb{background:linear-gradient(155deg,#DFE7EE,#C8D5E0);display:grid;place-items:center;color:#8FA2B4;border-radius:10px;flex:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="brandmark">
+      <div class="logo"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#C89A55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6.5 17V9.5L8 6h8l1.5 3.5V17M6.5 10.5h11"/><circle cx="8.5" cy="17" r="1.5"/><circle cx="15.5" cy="17" r="1.5"/></svg></div>
+      <div><h1>نسخه موبایل — فروشنده</h1><div class="sub">ماکاپ تعاملی — شبکه تبادل خودرو</div></div>
+    </div>
+    <div class="switch">
+      <a href="mockup-desktop.html">پنل نمایندگی</a>
+      <a href="mockup-admin.html">پنل مدیریت</a>
+      <button aria-selected="true">نسخه موبایل</button>
+    </div>
+  </div>
+
+  <div class="guide">
+    <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C89A55" stroke-width="1.9" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg> نسخه موبایل — دست فروشنده</h3>
+    <p>فروشنده نمایندگی بیشتر وقت‌ها پشت میز نیست؛ کنار مشتری و با گوشی کار می‌کند. این نسخه فقط چهار کار اصلی را دارد و همه‌شان <b>واقعاً کار می‌کنند</b>: جست‌وجوی شبکه، نمایش به مشتری، ثبت درخواست و پیگیری پرونده.</p>
+    <div class="gcols">
+      <div class="gcard"><h4>چطور کار کنیم؟</h4><p>از نوار شماره‌دار کنار گوشی، صفحه‌ها را ببینید — یا داخل خود گوشی روی دکمه‌ها بزنید و مسیر واقعی معامله را طی کنید.</p></div>
+      <div class="gcard"><h4>نشان «؟»</h4><p>روی هر <button class="refb" data-ref="lock">؟</button> بزنید تا ببینید آن قاعده از کدام پاسخ خودتان درآمده است.</p></div>
+      <div class="gcard"><h4>نسخه کامل کجاست؟</h4><p>کارهای سنگین‌تر (موجودی، گزارش) در <a href="mockup-desktop.html">پنل دسکتاپ</a> است و کارهای دفتر مرکزی در <a href="mockup-admin.html">پنل مدیریت</a>.</p></div>
+      <div class="gcard"><h4>نظر بدهید</h4><p>هر جا با کار واقعی نمی‌خواند، شماره صفحه و ایراد را بنویسید و بفرستید.</p></div>
+    </div>
+  </div>
+
+  <div class="stage2">
+    <div class="steps" id="tabs"></div>
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"><span class="num">۱۰:۳۲</span>
+          <span style="display:flex;gap:5px;align-items:center;opacity:.75">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2 20h3v-6H2v6zm5.5 0h3V8h-3v12zM13 20h3V4h-3v16zm5.5 0h3v-9h-3v9z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2 9.5C4.5 7 8 5.6 12 5.6S19.5 7 22 9.5l-2 2C18 9.6 15.2 8.5 12 8.5S6 9.6 4 11.5l-2-2zm5 5c1.4-1.4 3.1-2.1 5-2.1s3.6.7 5 2.1l-2 2c-.8-.8-1.9-1.2-3-1.2s-2.2.4-3 1.2l-2-2zM12 21l2.2-2.2c-1.2-1.2-3.2-1.2-4.4 0L12 21z"/></svg>
+            <svg width="20" height="14" viewBox="0 0 26 14" fill="none"><rect x="1" y="1" width="21" height="12" rx="3.5" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="3" width="15" height="8" rx="2" fill="currentColor"/><path d="M24 5.5v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span></div>
+        <div id="app" style="display:flex;flex-direction:column;flex:1;overflow:hidden"></div>
+      </div></div>
+      <div class="why" style="max-width:382px;margin-inline:auto">
+        <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C89A55" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> چرا این صفحه این‌طور است؟</h4>
+        <p id="whyText"></p><span class="ref" id="whyRef"></span>
+      </div>
+    </div>
+  </div>
+  <div class="foot">ماکاپ تعاملی — داده‌ها نمونه‌اند · <a href="mockup-desktop.html">پنل نمایندگی</a> · <a href="mockup-admin.html">پنل مدیریت</a></div>
+</div>
+
+<script>/*__JS_CORE__*/
+/*__JS_DATA__*/
+
+const ME='vnk';
+let Q={model:''},SEL=null,CASE_ID=1024;
+const myCases=()=>CASES.filter(c=>c.buyer===ME||c.seller===ME);
+const netResults=()=>INV.filter(i=>i.br!==ME&&i.st==='net'&&(!Q.model||i.model.includes(Q.model)));
+const openCase=()=>CASES.find(c=>c.id===CASE_ID)||CASES[0];
+
+const ACT={
+  pick(d){Q.model=d.model;go('results')},
+  openCar(d){SEL=INV.find(i=>i.id===d.id);go('car')},
+  toCustomer(){go('customer')},
+  submitReq(){
+    const cust=document.querySelector('[name=cust]').value.trim();
+    if(!cust){toast('نام مشتری را بنویسید','dan');return}
+    const id=uid();
+    CASES.unshift({id,item:SEL.id,model:SEL.model,color:SEL.color,buyer:ME,seller:SEL.br,cust,price:SEL.price,
+      sell:SEL.price+30000000,stage:1,paid:0,mins:CFG.holdMinutes,created:'همین الان',note:''});
+    CASE_ID=id;toast('درخواست ثبت شد — نوبت ۱ ساعته شروع شد');go('case');
+  },
+  payDeposit(){
+    const c=openCase();
+    modal({title:'ثبت فیش بیعانه',saveText:'ثبت فیش',
+      body:`<div class="note">${I.bank}<div>${fa(CFG.depositPct)}٪ قیمت — فقط ساتنا</div></div>
+        <div class="field"><label>مبلغ (تومان)</label><input class="f num" name="amt" value="${depositOf(c.price)}"></div>
+        <div class="field"><label>شماره پیگیری</label><input class="f" name="trk" placeholder="۱۶ رقم"></div>`,
+      save:m=>{if(!val(m,'trk').trim()){toast('شماره پیگیری لازم است','dan');return false}
+        c.paid=depositOf(c.price);c.stage=Math.max(c.stage,2);c.mins=CFG.settleHours*60;
+        const it=INV.find(i=>i.id===c.item);if(it)it.st='lock';
+        toast('فیش ثبت شد — منتظر تأیید دفتر مرکزی');render();}});
+  },
+  openCase(d){CASE_ID=Number(d.id);go('case')},
+  call(){toast('در نسخه واقعی با دفتر مرکزی تماس گرفته می‌شود','warn')}
+};
+
+const S={
+home:{label:'خانه',
+ why:'اولین صفحه فروشنده: فقط سه کار اصلی و یک هشدار زنده. کاربر ما وقت یادگیری ندارد؛ هر کار مهم باید یک لمس فاصله داشته باشد.',
+ ref:'مبنا: کاربران کم‌تجربه، موبایل‌محور',
+ body:()=>{
+  const wait=myCases().filter(c=>c.stage===1);
+  return `<div class="mbar">
+    <div style="flex:1"><h2>شعبه ونک — تهران</h2><div class="sub">علی رضایی · فروشنده</div></div>
+    <button class="iconbtn" data-act="notif" style="width:38px;height:38px">${I.bell}<span class="dot"></span></button></div>
+  <div class="mbody">
+    ${wait.length?`<div class="card brass" style="display:flex;align-items:center;gap:11px;padding:12px">
+      <span style="color:var(--brass)">${I.clock}</span>
+      <div style="flex:1;min-width:0"><div class="b sm" style="color:var(--brass)">پرونده #${fa(wait[0].id)} منتظر بیعانه</div>
+        <div class="xs muted">${wait[0].model} — <span class="num b" data-timer="${wait[0].mins}">—</span> تا آزاد شدن</div></div>
+      <button class="btn brass sm" data-act="openCase" data-id="${wait[0].id}">ادامه</button></div>`:''}
+
+    <button class="tile" data-goto="search"><span class="ic">${I.search}</span>
+      <span style="flex:1"><span class="b" style="display:block">جست‌وجوی خودرو در شبکه</span><span class="xs muted">مشتری چه می‌خواهد؟</span></span>
+      <span class="faint">${I.back}</span></button>
+    <button class="tile" data-goto="cases"><span class="ic n">${I.folder}</span>
+      <span style="flex:1"><span class="b" style="display:block">پرونده‌های من</span><span class="xs muted">${fa(myCases().filter(c=>c.stage<6).length)} پرونده باز</span></span>
+      <span class="faint">${I.back}</span></button>
+    <button class="tile" data-act="soon"><span class="ic n">${I.car}</span>
+      <span style="flex:1"><span class="b" style="display:block">موجودی شعبه</span><span class="xs muted">${fa(INV.filter(i=>i.br===ME).length)} دستگاه — ویرایش در پنل دسکتاپ</span></span>
+      <span class="faint">${I.back}</span></button>
+
+    <div class="card">
+      <div class="between" style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span class="b sm">خلاصه امروز</span><span class="pill gray num">${fa(myCases().filter(c=>c.stage<6).length)} فعال</span></div>
+      <div class="kv"><span>فروش این ماه</span><span class="num" style="color:var(--ok)">۴</span></div>
+      <div class="kv"><span>موجودی در شبکه</span><span class="num">${fa(INV.filter(i=>i.br===ME&&i.st==='net').length)}</span></div>
+      <div class="kv"><span>رتبه بین شعبه‌ها</span><span style="color:var(--ok)">۱ از ۶</span></div>
+    </div>
+  </div>`}},
+
+search:{label:'جست‌وجو',
+ why:'مشتری جلوی میز ایستاده و بیشتر از چند دقیقه صبر نمی‌کند. جست‌وجو با لمس مدل‌های پرتکرار انجام می‌شود، نه تایپ — تا اشتباه نوشتاری هم پیش نیاید.',
+ ref:'لیست مدل‌های پرتکرار — عرفان',
+ body:()=>`<div class="mbar"><button class="iconbtn" data-goto="home" style="width:38px;height:38px">${I.back}</button>
+   <div style="flex:1"><h2>مشتری چه می‌خواهد؟</h2><div class="sub">جست‌وجو در کل شبکه</div></div></div>
+ <div class="mbody">
+   <div class="field"><label>برند</label><div class="chips">
+     <button class="chip" aria-pressed="true">مدیران خودرو</button><button class="chip">کرمان موتور</button><button class="chip">آرین</button></div></div>
+   <div class="field"><label>مدل</label><div class="chips">
+     ${['تیگو ۸','تیگو ۷','آریزو ۶','آریزو ۸','اکستریم','X۵۵'].map(m=>`<button class="chip" data-act="pick" data-model="${m}">${m}</button>`).join('')}</div></div>
+   <div class="field"><label>رنگ</label><div class="chips">
+     ${COLORS.slice(0,4).map((c,i)=>`<button class="chip" ${i===0?'aria-pressed="true"':'aria-pressed="false"'}>${c}</button>`).join('')}</div></div>
+   <div class="note">${I.alert}<div>اگر رنگ دقیق موجود نباشد، گزینه‌های نزدیک هم نشان داده می‌شود.</div></div>
+ </div>
+ <div class="mfoot"><button class="btn accent wide" data-act="pick" data-model="">${I.search} جست‌وجو در کل شبکه</button></div>`},
+
+results:{label:'نتیجه',
+ why:'فروشنده فقط می‌بیند «موجود است + قیمت + مشخصات». نام و شهر نمایندگی فروشنده هیچ‌وقت نمایش داده نمی‌شود — هماهنگی از دفتر مرکزی است.',
+ ref:'قانون ۶ — هویت همیشه پنهان',
+ body:()=>{
+  const rs=netResults();
+  return `<div class="mbar"><button class="iconbtn" data-goto="search" style="width:38px;height:38px">${I.back}</button>
+    <div style="flex:1"><h2>${Q.model||'همه مدل‌ها'}</h2><div class="sub">${fa(rs.length)} دستگاه در شبکه موجود است</div></div></div>
+  <div class="mbody">
+    ${rs.map((it,ix)=>`<div class="card ${ix===0?'hl':''}" style="padding:12px">
+      <div style="display:flex;gap:11px;align-items:flex-start">
+        <div class="mthumb" style="width:74px;height:58px">${it.type==='حواله'?I.doc:I.car}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;justify-content:space-between;gap:8px"><span class="b sm">${it.model}</span>
+            ${it.type==='حواله'?'<span class="pill info">حواله</span>':'<span class="pill ok"><span class="sd"></span>موجود</span>'}</div>
+          <div class="xs faint">${it.year} · ${it.color} · شناسه ${it.id}</div>
+          <div class="eb num" style="font-size:15px;margin-top:3px">${money(it.price)}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:11px">
+        <button class="btn ghost sm" style="flex:1" data-act="openCar" data-id="${it.id}">جزئیات</button>
+        <button class="btn accent sm" style="flex:1" data-act="openCar" data-id="${it.id}">ثبت درخواست</button>
+      </div></div>`).join('')||
+      `<div class="empty"><div class="ic">${I.search}</div><div><b>موردی پیدا نشد</b><div class="xs">مدل دیگری را امتحان کنید</div></div>
+       <button class="btn ghost sm" data-goto="search">بازگشت به جست‌وجو</button></div>`}
+  </div>`}},
+
+car:{label:'صفحه خودرو',
+ why:'دو دکمه کاملاً متفاوت: «نمایش به مشتری» صفحه بدون قیمت باز می‌کند، «ثبت درخواست» نوبت یک‌ساعته می‌گیرد.',
+ ref:'قانون ۷ + قانون ۲',
+ body:()=>{
+  const it=SEL||INV.find(i=>i.br!==ME);SEL=it;
+  return `<div class="mbar"><button class="iconbtn" data-goto="results" style="width:38px;height:38px">${I.back}</button>
+    <div style="flex:1"><h2>${it.model}</h2><div class="sub">شناسه ${it.id}</div></div></div>
+  <div class="mbody">
+    <div class="mthumb" style="height:170px">${I.car}</div>
+    <div style="display:flex;gap:7px">${Array(4).fill(0).map(()=>`<div class="mthumb" style="flex:1;height:52px">${I.car}</div>`).join('')}</div>
+    <div class="card">
+      <div class="cap">قیمت شبکه — مقطوع ${ref('fixed')}</div>
+      <div class="num eb" style="font-size:23px;letter-spacing:-.03em">${money(it.price)}</div>
+      <div class="cap">تومان</div>
+      <div class="divide" style="height:1px;background:var(--line-2);margin:11px 0"></div>
+      <div class="kv"><span>بیعانه (${fa(CFG.depositPct)}٪)</span><span class="num hl-num">${money(depositOf(it.price))} ${ref('deposit')}</span></div>
+      <div class="kv"><span>فروشنده</span><span class="lockmark">${I.lock} همیشه پنهان</span></div>
+      <div class="kv"><span>وضعیت بدنه</span><span>${it.body}</span></div>
+      <div class="kv"><span>مدارک</span><span style="color:var(--ok)">${it.docs}</span></div>
+    </div>
+    <div class="note warn">${I.clock}<div>ثبت درخواست = ${fa(CFG.holdMinutes)} دقیقه نوبت. قفل قطعی فقط با بیعانه ساتنا. ${ref('lock')}</div></div>
+  </div>
+  <div class="mfoot">
+    <button class="btn accent wide" data-goto="request">ثبت درخواست برای مشتری</button>
+    <button class="btn ghost wide" data-act="toCustomer">نمایش به مشتری (بدون قیمت)</button>
+  </div>`}},
+
+customer:{label:'نمای مشتری',
+ why:'همین صفحه را به مشتری نشان می‌دهید: فقط عکس و مشخصات. نه قیمت، نه نام فروشنده. قیمت نهایی را خودتان اعلام می‌کنید.',
+ ref:'قانون ۷ — نمای مشتری',
+ body:()=>{
+  const it=SEL||INV[0];
+  return `<div class="mbar" style="background:var(--navy);border-color:var(--navy)">
+    <button class="iconbtn" data-goto="car" style="width:38px;height:38px;background:rgba(255,255,255,.12);border-color:transparent;color:#fff">${I.back}</button>
+    <div style="flex:1"><h2 style="color:#fff">نمای مشتری</h2><div class="sub" style="color:rgba(255,255,255,.55)">بدون قیمت و بدون اطلاعات داخلی</div></div></div>
+  <div class="mbody" style="background:#fff">
+    <div class="mthumb" style="height:200px">${I.car}</div>
+    <div style="display:flex;gap:7px">${Array(3).fill(0).map(()=>`<div class="mthumb" style="flex:1;height:60px">${I.car}</div>`).join('')}</div>
+    <h3 style="font-size:19px;margin-top:4px">${it.model.split('—')[0]}</h3>
+    <div class="card">
+      <div class="kv"><span>سال ساخت</span><span class="num">${it.year}</span></div>
+      <div class="kv"><span>رنگ</span><span>${it.color}</span></div>
+      <div class="kv"><span>کارکرد</span><span>صفر</span></div>
+      <div class="kv"><span>وضعیت بدنه</span><span>${it.body}</span></div>
+      <div class="kv"><span>زمان تحویل</span><span>۳ تا ۵ روز کاری</span></div>
+    </div>
+  </div>`}},
+
+request:{label:'ثبت درخواست',
+ why:'نوبت یعنی صف، نه انحصار: اگر نمایندگی دیگری زودتر بیعانه بدهد، خودرو مال او می‌شود. این را صریح می‌گوییم تا بعداً گله نشود.',
+ ref:'گره ۱ — مالکیت با بیعانه',
+ body:()=>{
+  const it=SEL||INV.find(i=>i.br!==ME);
+  return `<div class="mbar"><button class="iconbtn" data-goto="car" style="width:38px;height:38px">${I.back}</button>
+    <div style="flex:1"><h2>ثبت درخواست</h2><div class="sub">${it.model}</div></div></div>
+  <div class="mbody">
+    <div class="field"><label>نام مشتری *</label><input class="f" name="cust" placeholder="مثلاً: آقای رضایی"></div>
+    <div class="field"><label>شماره تماس مشتری</label><input class="f num" name="tel" placeholder="۰۹۱۲…"><span class="hint">برای فروشنده نمایش داده نمی‌شود ${ref('nocust')}</span></div>
+    <div class="field"><label>قیمت اعلامی شما</label><input class="f num" name="sell" value="${it.price+30000000}"></div>
+    <div class="card">
+      <div class="kv"><span>قیمت شبکه</span><span class="num">${money(it.price)}</span></div>
+      <div class="kv"><span>بیعانه لازم</span><span class="num hl-num">${money(depositOf(it.price))}</span></div>
+      <div class="kv"><span>روش پرداخت</span><span>فقط ساتنا ${ref('satna')}</span></div>
+    </div>
+  </div>
+  <div class="mfoot"><button class="btn accent wide" data-act="submitReq">${I.check} ثبت و شروع نوبت ${fa(CFG.holdMinutes)} دقیقه‌ای</button></div>`}},
+
+case:{label:'پرونده',
+ why:'وضعیت زنده معامله در جیب فروشنده: چه مرحله‌ای، چقدر مهلت، چقدر پرداخت شده. دیگر لازم نیست کسی زنگ بزند بپرسد «کجای کاریم؟»',
+ ref:'قانون ۳ و ۴',
+ body:()=>{
+  const c=openCase();
+  if(!c)return `<div class="mbar"><button class="iconbtn" data-goto="home" style="width:38px;height:38px">${I.back}</button><h2>پرونده</h2></div>
+    <div class="mbody"><div class="empty"><div class="ic">${I.folder}</div>پرونده‌ای باز نیست</div></div>`;
+  const rem=c.price-c.paid,pct=Math.round(c.paid/c.price*100);
+  return `<div class="mbar"><button class="iconbtn" data-goto="cases" style="width:38px;height:38px">${I.back}</button>
+    <div style="flex:1"><h2>پرونده #${fa(c.id)}</h2><div class="sub">${c.model}</div></div>${stagePill(c.stage)}</div>
+  <div class="mbody">
+    ${c.stage<6?`<div class="card" style="background:var(--accent-soft);border-color:var(--accent-line);display:flex;align-items:center;gap:10px;padding:12px">
+      <span style="color:var(--accent)">${I.clock}</span>
+      <div style="flex:1"><div class="b sm" style="color:var(--accent)">${c.stage<2?'مهلت واریز بیعانه':'مهلت تسویه کامل'}</div>
+        <div class="xs" style="color:#0b5c86">${c.stage<2?'بعد از آن خودرو آزاد می‌شود':'بعد از آن پرونده فسخ می‌شود'}</div></div>
+      <div class="num eb" style="font-size:19px;color:var(--accent)" data-timer="${c.mins||1}">—</div></div>`:''}
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:11px">مراحل</div>
+      <div class="timeline">
+        ${STAGES.map((t,i)=>{const st=i<c.stage?'done':i===c.stage?'now':'wait';
+          return `<div class="tl ${st}"><div class="dot" style="width:24px;height:24px">${st==='done'?I.check:fa(i+1)}</div>
+          <div class="txt" style="padding-bottom:12px"><div class="t1" style="font-size:12.5px">${t}</div></div></div>`}).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="kv"><span>قیمت معامله</span><span class="num">${money(c.price)}</span></div>
+      <div class="kv"><span>پرداخت‌شده</span><span class="num" style="color:var(--ok)">${money(c.paid)}</span></div>
+      <div class="kv"><span>باقی‌مانده</span><span class="num" style="color:${rem?'var(--warn)':'var(--ok)'}">${money(rem)}</span></div>
+      <div class="bar" style="margin-top:10px"><i style="width:${Math.max(3,pct)}%;background:${pct>=100?'var(--ok)':'var(--accent)'}"></i></div>
+    </div>
+    <div class="card" style="display:flex;align-items:center;gap:10px;padding:12px">
+      <div class="avatar" style="background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line);width:34px;height:34px">${I.shield}</div>
+      <div style="flex:1"><div class="b sm">دفتر مرکزی</div><div class="xs faint">تنها مرجع هماهنگی — ۹ تا ۱۸</div></div>
+      <button class="btn ghost sm" data-act="call">${I.phone}</button>
+    </div>
+  </div>
+  ${c.stage<2?`<div class="mfoot"><button class="btn accent wide" data-act="payDeposit">${I.bank} ثبت فیش بیعانه</button></div>`:''}`}},
+
+cases:{label:'پرونده‌های من',
+ why:'فهرست کوتاه و وضعیت‌محور: با یک نگاه معلوم است کدام پرونده معطل کار شماست.',
+ ref:'مبنا: شفافیت وضعیت',
+ body:()=>`<div class="mbar"><button class="iconbtn" data-goto="home" style="width:38px;height:38px">${I.back}</button>
+   <div style="flex:1"><h2>پرونده‌های من</h2><div class="sub">${fa(myCases().filter(c=>c.stage<6).length)} باز</div></div></div>
+ <div class="mbody">
+   ${myCases().map(c=>`<button class="tile" data-act="openCase" data-id="${c.id}" style="align-items:flex-start">
+     <span class="ic ${c.stage<2?'':'n'}">${c.model.includes('حواله')?I.doc:I.car}</span>
+     <span style="flex:1;min-width:0">
+       <span style="display:flex;justify-content:space-between;gap:8px"><span class="b sm">${c.model}</span>${stagePill(c.stage)}</span>
+       <span class="xs muted" style="display:block">#${fa(c.id)} · ${c.cust} · <span class="num">${money(c.sell)}</span></span>
+       ${c.mins?`<span class="xs b" style="color:var(--warn)">مهلت: <span class="num" data-timer="${c.mins}">—</span></span>`:''}
+     </span></button>`).join('')}
+ </div>`}
+};
+const ORDER=['home','search','results','car','customer','request','case','cases'];
+mountRouter(S,ORDER,{brand:'',panel:'',user:['','',''],groups:[]},'home',ACT);
+/* در موبایل سایدبار نداریم — حذفش کن */
+const _r=render;render=function(){_r();document.querySelector('#app .side')?.remove();
+  document.querySelectorAll('#tabs .tab').forEach((t,i)=>{t.className='step';});
+};
+render();
+</script>
+</body>
+</html>

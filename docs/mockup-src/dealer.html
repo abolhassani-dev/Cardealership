@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>پنل نمایندگی — شبکه تبادل خودرو</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>/*__FONT__*/
+/*__CSS__*/</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="brandmark">
+      <div class="logo"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#C89A55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6.5 17V9.5L8 6h8l1.5 3.5V17M6.5 10.5h11"/><circle cx="8.5" cy="17" r="1.5"/><circle cx="15.5" cy="17" r="1.5"/></svg></div>
+      <div><h1>پنل نمایندگی</h1><div class="sub">ماکاپ تعاملی — شبکه تبادل خودرو</div></div>
+    </div>
+    <div class="switch">
+      <button aria-selected="true">پنل نمایندگی</button>
+      <a href="mockup-admin.html">پنل مدیریت</a>
+      <a href="mockup.html">نسخه موبایل</a>
+    </div>
+  </div>
+
+  <div class="guide">
+    <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C89A55" stroke-width="1.9" stroke-linecap="round"><path d="M12 3 3 8l9 5 9-5-9-5zM3 13l9 5 9-5M3 18l9 5 9-5"/></svg> این چیست و با آن چه کنیم؟</h3>
+    <p>این ماکاپِ <b>واقعاً کارکننده</b> است: دکمه‌ها، فرم‌ها، جست‌وجو و ویرایش موجودی همه کار می‌کنند (روی داده نمونه). هدف این است که <b>پیش از شروع برنامه‌نویسی</b> آن را مثل یک روز کاری واقعی استفاده کنید و ایراد بگیرید.</p>
+    <div class="gcols">
+      <div class="gcard"><h4>این پنل مال کیست؟</h4><p>نمایندگی‌ها — فروشنده و مدیر شعبه. پنل دفتر مرکزی و مدیریت شبکه <a href="mockup-admin.html">جداست</a>.</p></div>
+      <div class="gcard"><h4>چطور کار کنیم؟</h4><p>از نوار شماره‌دار بالای پنل یا منوی کنار خود برنامه حرکت کنید. جست‌وجو کنید، درخواست بزنید، موجودی را ویرایش کنید.</p></div>
+      <div class="gcard"><h4>نشان «؟» چیست؟</h4><p>هر جا دیدید <button class="refb" data-ref="lock">؟</button>، رویش کلیک کنید: نشان می‌دهد آن قاعده از کدام پاسخ خودتان درآمده است.</p></div>
+      <div class="gcard"><h4>نظر را کجا بدهیم؟</h4><p>شماره صفحه + ایراد را بنویسید و بفرستید. مثلاً: «صفحه ۸ — ستون ماندگاری لازم نیست».</p></div>
+    </div>
+    <details>
+      <summary>توضیح کامل: این سامانه چه می‌کند و بر چه قانون‌هایی بنا شده؟</summary>
+      <p><b>مسئله:</b> مشتری وارد نمایندگی می‌شود و خودرویی می‌خواهد که آن شعبه ندارد — در حالی که همان خودرو ممکن است در شعبه‌ای دیگر خاک بخورد. امروز این کار با تلفن و واتساپ و حافظه انجام می‌شود؛ سامانه همان کار را ساختارمند و قابل‌پیگیری می‌کند.</p>
+      <p><b>ده قانون پایه</b> (همه از تصمیم‌های جلسه خودتان):</p>
+      <ul>
+        <li><b>۱.</b> ثبت خودرو در شبکه = تعهد فروش؛ فروشنده حق رد درخواست ندارد.</li>
+        <li><b>۲.</b> رزرو زبانی حداکثر ۱ ساعت؛ قفل واقعی فقط با نشستن بیعانه (ساتنا).</li>
+        <li><b>۳.</b> تا تسویه کامل نشود، خودرو از پارکینگ فروشنده حرکت نمی‌کند.</li>
+        <li><b>۴.</b> مهلت‌ها: پرداخت اولیه ۲ ساعت، تسویه کامل ۲۴ ساعت؛ بدون توضیح و پرداخت، فسخ خودکار و بازگشت بیعانه بدون کسر.</li>
+        <li><b>۵.</b> شبکه با مشتری نهایی کاری ندارد؛ قرارداد و سند و تحویل با خود نمایندگی است.</li>
+        <li><b>۶.</b> <b>هویت خریدار و فروشنده هیچ‌وقت برای یکدیگر آشکار نمی‌شود</b> — نه قبل از قفل، نه بعد از آن. تمام هماهنگی از دفتر مرکزی.</li>
+        <li><b>۷.</b> قیمت را خود نمایندگی می‌گذارد؛ اعضای شبکه می‌بینند، مشتری نه.</li>
+        <li><b>۸.</b> تا بیعانه ننشسته قیمت آزاد است؛ بعد از آن قفل قطعی.</li>
+        <li><b>۹.</b> ساعت کاری ۹ تا ۱۸؛ خارج از آن فقط ثبت و صف — مگر خرید قطعی که فوراً به دفتر مرکزی اطلاع می‌رود.</li>
+        <li><b>۱۰.</b> الزام صاحب امتیاز + وصل شدن پاداش کارکنان به سامانه.</li>
+      </ul>
+      <p><b>عددهای تثبیت‌شده:</b> بیعانه ۱۰٪ (فقط ساتنا) · کمیسیون پیش‌فرض ۱٪ از هر طرف · تسویه ۲۴ ساعت · ثبت فروش حضوری حداکثر ۱ ساعت · ۳ بار «موجودی غلط» = تعلیق · بیمه حمل اجباری · قیمت مقطوع.</p>
+      <p><b>عمداً در سامانه نیست:</b> خودروی کارکرده، معاوضه، ارتباط با مشتری نهایی، صدور فاکتور رسمی (فاز اول).</p>
+    </details>
+  </div>
+
+  <div class="smallnote">این پنل برای نمایشگر بزرگ طراحی شده — از کامپیوتر بازش کنید. برای موبایل <a href="mockup.html">نسخه موبایل</a> را ببینید.</div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="browser">
+    <div class="chrome">
+      <span class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span>
+      <div class="urlbar"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5C7285" stroke-width="2.4" stroke-linejoin="round"><rect x="4.5" y="10" width="15" height="10.5" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg> panel.car-network.ir</div>
+      <span style="width:52px"></span>
+    </div>
+    <div class="app" id="app"></div>
+  </div>
+
+  <div class="why">
+    <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C89A55" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> چرا این صفحه این‌طور طراحی شده؟</h4>
+    <p id="whyText"></p><span class="ref" id="whyRef"></span>
+  </div>
+  <div class="foot">ماکاپ تعاملی — داده‌ها نمونه‌اند و هیچ‌جا ذخیره نمی‌شوند · <a href="mockup-admin.html">پنل مدیریت</a> · <a href="mockup.html">نسخه موبایل</a></div>
+</div>
+
+<script>/*__JS_CORE__*/
+/*__JS_DATA__*/
+
+const ME='vnk'; /* شعبه من */
+let Q={model:'',color:'',type:''};   /* فیلتر جست‌وجو */
+let SEL=null;                        /* خودروی انتخاب‌شده */
+let CASE_ID=1024;                    /* پرونده باز */
+
+const SIDE={brand:'شبکه تبادل خودرو',panel:'پنل نمایندگی',user:['ع.ر','علی رضایی','شعبه ونک — تهران'],
+ groups:[
+  {label:'کار روزانه',items:[['dash','داشبورد',I.grid,''],['network','جست‌وجوی شبکه',I.search,''],['cases','پرونده‌های من',I.folder,String(fa(CASES.filter(c=>c.buyer===ME&&c.stage<6).length))]]},
+  {label:'موجودی من',items:[['inventory','موجودی شعبه',I.car,''],['addcar','ثبت خودرو / حواله',I.plus,'']]},
+  {label:'گزارش',items:[['perf','عملکرد شعبه',I.chart,'']]}
+ ]};
+
+/* ═══ کمکی ═══ */
+const myInv=()=>INV.filter(i=>i.br===ME);
+const myCases=()=>CASES.filter(c=>c.buyer===ME||c.seller===ME);
+const netResults=()=>INV.filter(i=>i.br!==ME&&i.st==='net'
+  &&(!Q.model||i.model.includes(Q.model))&&(!Q.color||i.color===Q.color)&&(!Q.type||i.type===Q.type));
+const openCase=()=>CASES.find(c=>c.id===CASE_ID)||CASES[0];
+
+/* ═══ اکشن‌ها ═══ */
+const ACT={
+  /* جست‌وجو */
+  doSearch(d,el){
+    const box=el.closest('.content');
+    Q.model=box.querySelector('[name=q-model]').value;
+    Q.color=box.querySelector('[name=q-color]').value;
+    Q.type=box.querySelector('[name=q-type]').value;
+    render();toast(`${fa(netResults().length)} نتیجه در شبکه پیدا شد`);
+  },
+  quickSearch(d){Q={model:d.model||'',color:'',type:''};go('network');},
+  clearSearch(){Q={model:'',color:'',type:''};render();},
+  openCar(d){SEL=INV.find(i=>i.id===d.id);go('carpage');},
+  /* درخواست */
+  submitRequest(d,el){
+    const box=el.closest('.content');
+    const cust=box.querySelector('[name=cust]').value.trim();
+    if(!cust){toast('نام مشتری را بنویسید','dan');return}
+    const price=SEL.price;
+    const id=uid();
+    CASES.unshift({id,item:SEL.id,model:SEL.model,color:SEL.color,buyer:ME,seller:SEL.br,cust,price,
+      sell:Number(box.querySelector('[name=sell]').value)||price,stage:1,paid:0,mins:CFG.holdMinutes,created:'همین الان',note:box.querySelector('[name=note]').value});
+    CASE_ID=id;
+    toast('درخواست ثبت شد — نوبت ۱ ساعته شروع شد');
+    go('dealfile');
+  },
+  /* بیعانه */
+  payDeposit(){
+    const c=openCase();
+    modal({title:'ثبت فیش بیعانه',saveText:'ثبت و ارسال برای تأیید',
+      body:`<div class="note">${I.bank}<div>مبلغ بیعانه ${fa(CFG.depositPct)}٪ قیمت است و فقط با <b>ساتنا</b> پذیرفته می‌شود.</div></div>
+        <div class="field"><label>مبلغ (تومان)</label><input class="f num" name="amt" value="${depositOf(c.price)}"></div>
+        <div class="field"><label>شماره پیگیری ساتنا</label><input class="f" name="trk" placeholder="۱۶ رقم"></div>
+        <div class="field"><label>تصویر فیش</label><div class="input ph">انتخاب فایل…</div></div>`,
+      save:m=>{
+        if(!val(m,'trk').trim()){toast('شماره پیگیری لازم است','dan');return false}
+        c.paid=depositOf(c.price);c.stage=Math.max(c.stage,2);c.mins=CFG.settleHours*60;
+        const it=INV.find(i=>i.id===c.item);if(it)it.st='lock';
+        LOG.unshift(['همین الان',`بیعانه پرونده #${c.id} ثبت شد`,'شعبه ونک']);
+        toast('فیش ثبت شد — منتظر تأیید دفتر مرکزی');render();
+      }});
+  },
+  paySettle(){
+    const c=openCase();
+    modal({title:'ثبت فیش تسویه کامل',saveText:'ثبت فیش',
+      body:`<div class="note warn">${I.alert}<div>تا تسویه کامل انجام نشود، خودرو از پارکینگ فروشنده حرکت نمی‌کند.</div></div>
+        <div class="field"><label>مبلغ باقی‌مانده (تومان)</label><input class="f num" name="amt" value="${c.price-c.paid}"></div>
+        <div class="field"><label>شماره پیگیری</label><input class="f" name="trk" placeholder="۱۶ رقم"></div>`,
+      save:m=>{if(!val(m,'trk').trim()){toast('شماره پیگیری لازم است','dan');return false}
+        c.paid=c.price;c.stage=Math.max(c.stage,4);
+        LOG.unshift(['همین الان',`تسویه کامل پرونده #${c.id}`,'شعبه ونک']);
+        toast('تسویه ثبت شد — پرونده به مرحله کارشناسی رفت');render();}});
+  },
+  addNote(){
+    const c=openCase();
+    modal({title:'افزودن توضیح به پرونده',saveText:'ثبت توضیح',
+      body:`<div class="field"><label>توضیح شما برای دفتر مرکزی</label><textarea class="f" name="n" placeholder="مثلاً: مشتری پول را فردا ظهر می‌آورد">${c.note||''}</textarea></div>
+        <div class="note lock">${I.doc}<div>اگر برای تسویه به زمان بیشتری نیاز دارید، حتماً توضیح ثبت کنید — بدون توضیح، پرونده خودکار فسخ می‌شود.</div></div>`,
+      save:m=>{c.note=val(m,'n');toast('توضیح در پرونده ثبت شد');render();}});
+  },
+  cancelCase(){
+    const c=openCase();
+    modal({title:'لغو پرونده #'+fa(c.id),danger:true,saveText:'بله، لغو شود',
+      body:`<div class="note warn">${I.alert}<div>پرونده لغو می‌شود و خودرو به شبکه برمی‌گردد. اگر بیعانه پرداخت شده باشد، طبق قواعد لغو بررسی می‌شود.</div></div>
+        <div class="field"><label>دلیل لغو</label><select class="f" name="r"><option>انصراف مشتری</option><option>تأمین نشد</option><option>مشکل پرداخت</option></select></div>`,
+      save:m=>{c.stage=-1;const it=INV.find(i=>i.id===c.item);if(it)it.st='net';
+        CASES=CASES.filter(x=>x.id!==c.id);CASE_ID=(CASES[0]||{}).id;
+        LOG.unshift(['همین الان',`پرونده #${c.id} لغو شد — ${val(m,'r')}`,'شعبه ونک']);
+        toast('پرونده لغو شد و خودرو آزاد شد','warn');go('cases');}});
+  },
+  openCase(d){CASE_ID=Number(d.id);go('dealfile');},
+  /* موجودی — ویرایش واقعی */
+  editItem(d){
+    const it=INV.find(i=>i.id===d.id);if(!it)return;
+    modal({title:'ویرایش — '+it.model,wide:true,saveText:'ذخیره تغییرات',
+      body:`<div class="grid g2">
+          <div class="field"><label>مدل و تیپ</label><input class="f" name="model" value="${it.model}"></div>
+          <div class="field"><label>رنگ</label><select class="f" name="color">${COLORS.concat(['—']).map(c=>`<option ${c===it.color?'selected':''}>${c}</option>`).join('')}</select></div>
+          <div class="field"><label>قیمت فروش (تومان)</label><input class="f num" name="price" value="${it.price}"></div>
+          <div class="field"><label>سال</label><input class="f num" name="year" value="${it.year}"></div>
+          <div class="field"><label>شماره شاسی</label><input class="f" name="vin" value="${it.vin}"></div>
+          <div class="field"><label>وضعیت مدارک</label><select class="f" name="docs"><option ${it.docs==='کامل'?'selected':''}>کامل</option><option ${it.docs!=='کامل'?'selected':''}>ناقص</option></select></div>
+        </div>
+        <div class="field"><label>وضعیت بدنه — هر ایراد را بنویسید ${''}</label><textarea class="f" name="body">${it.body}</textarea></div>
+        <div class="card" style="display:flex;align-items:center;gap:12px">
+          <div style="flex:1"><div class="b sm">نمایش در شبکه</div><div class="xs muted">اگر خاموش شود، خودرو برای بقیه نمایندگی‌ها دیده نمی‌شود</div></div>
+          <button class="tgl" name="net" aria-pressed="${it.st==='net'}"></button>
+        </div>`,
+      save:m=>{
+        const p=Number(val(m,'price'));
+        if(!p||p<1000000){toast('قیمت معتبر وارد کنید','dan');return false}
+        const old=it.price;
+        it.model=val(m,'model');it.color=val(m,'color');it.price=p;it.year=val(m,'year');
+        it.vin=val(m,'vin');it.docs=val(m,'docs');it.body=val(m,'body');
+        it.st=m.querySelector('[name=net]').getAttribute('aria-pressed')==='true'?'net':'off';
+        LOG.unshift(['همین الان',`موجودی ${it.id} ویرایش شد`+(old!==p?` — قیمت به ${money(p)}`:''),'شعبه ونک']);
+        toast('تغییرات ذخیره شد');render();
+      }});
+  },
+  toggleNet(d){
+    const it=INV.find(i=>i.id===d.id);if(!it)return;
+    it.st=it.st==='net'?'off':'net';
+    toast(it.st==='net'?'خودرو در شبکه نمایش داده می‌شود':'خودرو از نمایش در شبکه خارج شد',it.st==='net'?'ok':'warn');
+    render();
+  },
+  sellItem(d){
+    const it=INV.find(i=>i.id===d.id);if(!it)return;
+    modal({title:'ثبت فروش حضوری — '+it.model,saveText:'ثبت فروش',
+      body:`<div class="note warn">${I.alert}<div>فروش حضوری را حداکثر تا <b>۱ ساعت</b> بعد ثبت کنید. سه بار «موجودی غلط» یعنی تعلیق نمایندگی.</div></div>
+        <div class="field"><label>مبلغ فروش (تومان)</label><input class="f num" name="p" value="${it.price}"></div>
+        <div class="field"><label>نام مشتری</label><input class="f" name="c" placeholder="اختیاری"></div>`,
+      save:m=>{INV=INV.filter(x=>x.id!==it.id);
+        LOG.unshift(['همین الان',`${it.model} فروش حضوری ثبت شد`,'شعبه ونک']);
+        toast('فروش ثبت شد و خودرو از شبکه خارج شد');render();}});
+  },
+  delItem(d){
+    const it=INV.find(i=>i.id===d.id);if(!it)return;
+    modal({title:'حذف از موجودی',danger:true,saveText:'حذف شود',
+      body:`<p style="margin:0">آیا «${it.model}» از موجودی شعبه حذف شود؟</p>`,
+      save:()=>{INV=INV.filter(x=>x.id!==it.id);toast('از موجودی حذف شد','warn');render();}});
+  },
+  saveNew(d,el){
+    const box=el.closest('.content');
+    const g=n=>box.querySelector(`[name="${n}"]`).value.trim();
+    if(!g('model')){toast('مدل خودرو را انتخاب کنید','dan');return}
+    if(!g('price')){toast('قیمت را وارد کنید','dan');return}
+    const isH=box.querySelector('.chip[aria-pressed="true"]').textContent.includes('حواله');
+    if(!isH&&!g('vin')){toast('شماره شاسی اجباری است','dan');return}
+    const id=(isH?'HV-':'NW-')+fa(String(Math.floor(Math.random()*9000)+1000));
+    INV.unshift({id,br:ME,model:g('model'),color:isH?'—':g('color'),year:g('year')||'۱۴۰۳',vin:isH?'—':g('vin'),
+      price:Number(g('price')),type:isH?'حواله':'خودرو',body:g('body')||'سالم',docs:g('docs')||'کامل',days:0,st:'net'});
+    LOG.unshift(['همین الان',`${g('model')} به شبکه اضافه شد`,'شعبه ونک']);
+    toast('خودرو در شبکه ثبت شد');go('inventory');
+  },
+  showCustomer(){go('customerview')}
+};
+
+/* ═══ صفحه‌ها ═══ */
+const S={
+dash:{label:'داشبورد',nav:'dash',
+ why:'مدیر شعبه با یک نگاه می‌فهمد کجای کار است: چه چیزی معطل اوست، چه تایمری در حال شمارش است و موجودی و فروشش چه وضعی دارد. کار فوری همیشه بالای صفحه است، نه ته یک منو.',
+ ref:'مبنا: کاهش تماس‌های پیگیری',
+ body:()=>{
+  const open=myCases().filter(c=>c.stage<6),wait=open.filter(c=>c.stage===1);
+  return `${topbar('داشبورد','سه‌شنبه ۲ مرداد ۱۴۰۵ — شعبه ونک',{searchText:'جست‌وجوی خودرو در شبکه…',alert:true})}
+  <div class="content">
+    <div class="grid g4">
+      <div class="card kpi raise"><div class="l">معطل اقدام شما</div><div class="v num" style="color:var(--warn)">${fa(wait.length)}</div>
+        <div class="d" style="color:var(--warn)">${I.clock} منتظر بیعانه</div>${spark([2,1,3,2,4,3,wait.length||1],'#C8912E','rgba(200,145,46,.10)')}</div>
+      <div class="card kpi raise"><div class="l">پرونده‌های باز</div><div class="v num">${fa(open.length)}</div>
+        <div class="d faint">در جریان معامله</div>${spark([1,2,2,3,2,4,open.length],'#0F6EA3','rgba(15,110,163,.10)')}</div>
+      <div class="card kpi raise"><div class="l">موجودی شعبه</div><div class="v num">${fa(myInv().length)}</div>
+        <div class="d faint">${fa(myInv().filter(i=>i.st==='net').length)} در شبکه</div>${spark([5,6,6,8,7,7,myInv().length],'#6B7F93','rgba(107,127,147,.10)')}</div>
+      <div class="card kpi raise"><div class="l">فروش این ماه</div><div class="v num" style="color:var(--ok)">۴</div>
+        <div class="d" style="color:var(--ok)">${I.up} ۲ مورد از شبکه</div>${spark([1,1,2,2,3,3,4],'#1B8A5F','rgba(27,138,95,.12)')}</div>
+    </div>
+
+    ${wait.length?`<div class="card brass raise" style="display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:11px;background:var(--brass-soft);border:1px solid var(--brass-line);display:grid;place-items:center;color:var(--brass);flex:none">${I.clock}</div>
+      <div style="flex:1;min-width:0">
+        <div class="b" style="color:var(--brass)">پرونده #${fa(wait[0].id)} منتظر واریز بیعانه است ${ref('lock')}</div>
+        <div class="sm muted">${wait[0].model} — اگر تا <span class="num b" data-timer="${wait[0].mins}">${fa(wait[0].mins)}:۰۰</span> دیگر بیعانه نرسد، خودرو خودکار آزاد می‌شود</div>
+      </div>
+      <button class="btn brass" data-act="openCase" data-id="${wait[0].id}">ادامه پرونده</button>
+    </div>`:''}
+
+    <div class="split">
+      <div class="card pad0 raise">
+        <div class="cardhead"><h3>پرونده‌های در جریان</h3><button class="btn ghost sm" data-goto="cases">همه پرونده‌ها</button></div>
+        <div class="tblwrap"><table>
+          <thead><tr><th>خودرو</th><th>پرونده</th><th>نقش</th><th>مرحله</th><th>مهلت</th><th></th></tr></thead>
+          <tbody>${open.map(c=>`<tr>
+            <td><div class="b">${c.model}</div><div class="xs faint num">${money(c.sell)} تومان</div></td>
+            <td class="num">#${fa(c.id)}</td>
+            <td>${c.buyer===ME?'<span class="tag-inline">خریدار</span>':'<span class="tag-inline">فروشنده</span>'}</td>
+            <td>${stagePill(c.stage)}</td>
+            <td class="num b">${c.mins?`<span data-timer="${c.mins}">—</span>`:'<span class="faint">—</span>'}</td>
+            <td><button class="btn ghost sm" data-act="openCase" data-id="${c.id}">مشاهده</button></td></tr>`).join('')||
+            `<tr><td colspan="6"><div class="empty"><div class="ic">${I.folder}</div>پرونده بازی ندارید</div></td></tr>`}
+          </tbody>
+        </table></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card raise">
+          <div class="eyebrow" style="margin-bottom:10px">مشتری چه می‌خواهد؟</div>
+          <div class="chips" style="margin-bottom:11px">
+            <button class="chip" data-act="quickSearch" data-model="تیگو ۸">تیگو ۸</button>
+            <button class="chip" data-act="quickSearch" data-model="آریزو">آریزو</button>
+            <button class="chip" data-act="quickSearch" data-model="X۵۵">X۵۵</button>
+            <button class="chip" data-act="quickSearch" data-model="اکستریم">اکستریم</button>
+          </div>
+          <button class="btn accent wide" data-goto="network">${I.search} جست‌وجو در کل شبکه</button>
+        </div>
+        <div class="card raise">
+          <div class="eyebrow" style="margin-bottom:8px">موجودی شعبه من</div>
+          <div class="kv"><span>در شبکه</span><span class="num" style="color:var(--ok)">${fa(myInv().filter(i=>i.st==='net').length)} دستگاه</span></div>
+          <div class="kv"><span>قفل‌شده برای معامله</span><span class="num">${fa(myInv().filter(i=>i.st==='lock').length)} دستگاه</span></div>
+          <div class="kv"><span>حواله</span><span class="num">${fa(myInv().filter(i=>i.type==='حواله').length)} فقره</span></div>
+          <div class="kv"><span>راکد بالای ۳۰ روز</span><span class="num" style="color:var(--warn)">${fa(myInv().filter(i=>i.days>30).length)} دستگاه</span></div>
+          <button class="btn ghost wide sm" style="margin-top:11px" data-goto="inventory">${I.car} مدیریت موجودی</button>
+        </div>
+      </div>
+    </div>
+  </div>`}},
+
+network:{label:'جست‌وجوی شبکه',nav:'network',
+ why:'ستون فروشنده اصلاً وجود ندارد؛ به‌جایش «شناسه شبکه» می‌نشیند. شما فقط می‌بینید موجود است، قیمتش چند است و چه مشخصاتی دارد. هویت فروشنده هیچ‌وقت آشکار نمی‌شود.',
+ ref:'قانون ۶ — هویت طرفین همیشه پنهان',
+ body:()=>{
+  const rs=netResults();
+  return `${topbar('جست‌وجوی شبکه',`${fa(rs.length)} نتیجه از مجموع ${fa(INV.filter(i=>i.br!==ME&&i.st==='net').length)} خودروی موجود`,{searchText:'مدل، تیپ یا رنگ…'})}
+  <div class="content">
+    <div class="card raise">
+      <div style="display:flex;flex-wrap:wrap;gap:13px;align-items:flex-end">
+        <div class="field" style="flex:2;min-width:190px"><label>مدل یا تیپ</label>
+          <input class="f" name="q-model" value="${Q.model}" placeholder="مثلاً: تیگو ۸"></div>
+        <div class="field" style="flex:1;min-width:130px"><label>رنگ</label>
+          <select class="f" name="q-color"><option value="">همه رنگ‌ها</option>${COLORS.map(c=>`<option ${Q.color===c?'selected':''}>${c}</option>`).join('')}</select></div>
+        <div class="field" style="flex:1;min-width:130px"><label>نوع</label>
+          <select class="f" name="q-type"><option value="">خودرو + حواله</option><option ${Q.type==='خودرو'?'selected':''}>خودرو</option><option ${Q.type==='حواله'?'selected':''}>حواله</option></select></div>
+        <button class="btn accent" data-act="doSearch">${I.search} جست‌وجو</button>
+        ${(Q.model||Q.color||Q.type)?'<button class="btn ghost" data-act="clearSearch">پاک کردن</button>':''}
+      </div>
+    </div>
+
+    <div class="card pad0 raise">
+      <div class="cardhead"><h3>نتایج موجود در شبکه</h3>
+        <span class="lockmark">${I.lock} هویت فروشنده در هیچ مرحله‌ای نمایش داده نمی‌شود ${ref('hidden')}</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th></th><th>خودرو</th><th>شناسه شبکه</th><th>سال</th><th>وضعیت بدنه</th><th>نوع</th><th>قیمت (تومان)</th><th></th></tr></thead>
+        <tbody>${rs.map((it,ix)=>`<tr class="${ix===0?'hl':''}">
+          <td><div class="thumb" style="width:56px;height:42px">${it.type==='حواله'?I.doc:I.car}</div></td>
+          <td><div class="b">${it.model}</div><div class="xs faint">${it.color} · ${it.type==='حواله'?'موعد ۴۰ روز':'صفر'} · مدارک ${it.docs}</div></td>
+          <td class="num faint">${it.id}</td><td class="num">${it.year}</td>
+          <td>${it.body==='سالم'||it.body.startsWith('سالم')?'<span class="pill ok"><span class="sd"></span>سالم</span>':it.body==='—'?'<span class="faint">—</span>':`<span class="pill warn"><span class="sd"></span>${it.body}</span>`}</td>
+          <td>${it.type==='حواله'?'<span class="pill info">حواله</span>':'<span class="pill gray">خودرو</span>'}</td>
+          <td class="eb num" style="font-size:14px">${money(it.price)}</td>
+          <td><button class="btn ${ix===0?'accent':'ghost'} sm" data-act="openCar" data-id="${it.id}">مشاهده</button></td></tr>`).join('')||
+          `<tr><td colspan="8"><div class="empty"><div class="ic">${I.search}</div>
+            <div><b>نتیجه‌ای پیدا نشد</b><div class="xs">فیلترها را ساده‌تر کنید یا گزینه‌های مشابه را ببینید</div></div>
+            <button class="btn ghost sm" data-act="clearSearch">نمایش همه</button></div></td></tr>`}
+        </tbody>
+      </table></div>
+    </div>
+    <div class="note">${I.alert}<div>اگر رنگ یا تیپ دقیق موجود نباشد، سامانه گزینه‌های نزدیک در همان محدوده قیمت را پیشنهاد می‌دهد تا مشتری از دست نرود.</div></div>
+  </div>`}},
+
+carpage:{label:'صفحه خودرو',nav:'network',
+ why:'دو دکمه کاملاً متفاوت کنار هم: «نمایش به مشتری» صفحه‌ای بدون قیمت و بدون هیچ اطلاعات داخلی باز می‌کند؛ «ثبت درخواست» نوبت یک‌ساعته می‌گیرد.',
+ ref:'قانون ۷ + قانون ۲',
+ body:()=>{
+  const it=SEL||INV.find(i=>i.br!==ME);SEL=it;
+  return `${topbar(it.model,`جست‌وجوی شبکه ← شناسه ${it.id}`,{search:false,actions:'<button class="btn ghost sm" data-goto="network">بازگشت به نتایج</button>'})}
+  <div class="content">
+    <div class="split">
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div class="thumb" style="height:300px">${it.type==='حواله'?I.doc:I.car}</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:9px">
+          ${Array(4).fill(0).map(()=>`<div class="thumb" style="height:66px">${I.car}</div>`).join('')}
+          <div class="thumb" style="height:66px">${I.camera}</div>
+        </div>
+        <div class="card raise">
+          <div class="eyebrow" style="margin-bottom:10px">مشخصات ثبت‌شده ${ref('photos')}</div>
+          <div class="grid g2" style="gap:0 24px">
+            <div class="kv"><span>سال ساخت</span><span class="num">${it.year}</span></div>
+            <div class="kv"><span>رنگ</span><span>${it.color}</span></div>
+            <div class="kv"><span>نوع</span><span>${it.type}</span></div>
+            <div class="kv"><span>شماره شاسی</span><span class="num">${it.vin}</span></div>
+            <div class="kv"><span>وضعیت مدارک</span><span style="color:var(--ok)">${it.docs}</span></div>
+            <div class="kv"><span>وضعیت بدنه</span><span>${it.body}</span></div>
+            <div class="kv"><span>مدت حضور در شبکه</span><span class="num">${fa(it.days)} روز</span></div>
+            <div class="kv"><span>زمان تقریبی تحویل</span><span>${it.type==='حواله'?'حدود ۴۰ روز':'۳ تا ۵ روز کاری'}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div class="card raise">
+          <div class="cap">قیمت شبکه — مقطوع ${ref('fixed')}</div>
+          <div class="num eb" style="font-size:28px;letter-spacing:-.035em;line-height:1.4">${money(it.price)}</div>
+          <div class="cap" style="margin-bottom:14px">تومان</div>
+          <button class="btn accent wide" style="margin-bottom:9px" data-goto="request">ثبت درخواست برای مشتری</button>
+          <button class="btn ghost wide" data-act="showCustomer">نمایش به مشتری (بدون قیمت)</button>
+        </div>
+        <div class="card">
+          <div class="kv"><span>بیعانه لازم (${fa(CFG.depositPct)}٪)</span><span class="num hl-num">${money(depositOf(it.price))} ${ref('deposit')}</span></div>
+          <div class="kv"><span>فروشنده</span><span class="lockmark">${I.lock} همیشه پنهان</span></div>
+          <div class="kv"><span>هماهنگی</span><span>از طریق دفتر مرکزی</span></div>
+          <div class="kv"><span>هزینه حمل</span><span>با نمایندگی خریدار</span></div>
+          <div class="kv"><span>بیمه حمل</span><span style="color:var(--ok)">اجباری ${ref('insurance')}</span></div>
+        </div>
+        <div class="note warn">${I.clock}<div>با ثبت درخواست، این خودرو <b>${fa(CFG.holdMinutes)} دقیقه</b> برای شما نوبت می‌گیرد. قفل قطعی فقط با واریز بیعانه (ساتنا) انجام می‌شود. ${ref('satna')}</div></div>
+      </div>
+    </div>
+  </div>`}},
+
+customerview:{label:'نمای مشتری',nav:'network',
+ why:'همین صفحه را روی مانیتور به مشتری نشان می‌دهید: فقط عکس و مشخصات. نه قیمت شبکه، نه شناسه، نه هیچ اطلاعات داخلی. قیمت نهایی را خودتان حضوری اعلام می‌کنید.',
+ ref:'قانون ۷ — نمای مشتری',
+ body:()=>{
+  const it=SEL||INV[0];
+  return `<div class="topbar" style="background:var(--navy);border-color:var(--navy)">
+    <div><h2 style="color:#fff">نمای مشتری</h2><div class="crumb" style="color:rgba(255,255,255,.55)">حالت نمایش — همه اطلاعات داخلی پنهان است</div></div>
+    <span style="margin-inline-start:auto"></span><button class="btn ghost sm" data-goto="carpage">بستن نمای مشتری</button></div>
+  <div class="content" style="background:#fff">
+    <div class="split">
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <div class="thumb" style="height:340px">${I.car}</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px">
+          ${Array(4).fill(0).map(()=>`<div class="thumb" style="height:78px">${I.car}</div>`).join('')}
+        </div>
+      </div>
+      <div>
+        <h2 style="font-size:25px;font-weight:800;margin-bottom:4px">${it.model.split('—')[0]}</h2>
+        <div class="muted" style="margin-bottom:16px">${it.model.includes('—')?it.model.split('—')[1]:''} — مدل ${it.year}</div>
+        <div class="card raise">
+          <div class="kv"><span>سال ساخت</span><span class="num">${it.year}</span></div>
+          <div class="kv"><span>رنگ</span><span>${it.color}</span></div>
+          <div class="kv"><span>کارکرد</span><span>صفر</span></div>
+          <div class="kv"><span>وضعیت بدنه</span><span>${it.body}</span></div>
+          <div class="kv"><span>زمان تحویل</span><span>۳ تا ۵ روز کاری</span></div>
+        </div>
+        <div class="note" style="margin-top:14px">${I.shield}<div>قیمت را فروشنده حضوری به شما اعلام می‌کند.</div></div>
+      </div>
+    </div>
+  </div>`}},
+
+request:{label:'ثبت درخواست',nav:'network',
+ why:'نوبت گرفتن یعنی صف، نه انحصار — و این را صریح به فروشنده می‌گوییم تا بعداً گله نکند. اطلاعات مشتری هم فقط در پرونده خود شعبه می‌ماند و هرگز به فروشنده نمی‌رود.',
+ ref:'گره ۱ + قانون ۵',
+ body:()=>{
+  const it=SEL||INV.find(i=>i.br!==ME);
+  return `${topbar('ثبت درخواست',`${it.model} · شناسه ${it.id}`,{search:false})}
+  <div class="content">
+    <div class="split">
+      <div class="card raise">
+        <div class="eyebrow" style="margin-bottom:14px">اطلاعات درخواست</div>
+        <div class="grid g2">
+          <div class="field"><label>نام مشتری *</label><input class="f" name="cust" placeholder="مثلاً: آقای رضایی"><span class="hint">فقط در پرونده شما می‌ماند ${ref('nocust')}</span></div>
+          <div class="field"><label>شماره تماس مشتری</label><input class="f num" name="tel" placeholder="۰۹۱۲…"><span class="hint">برای فروشنده نمایش داده نمی‌شود</span></div>
+          <div class="field"><label>قیمت اعلامی شما به مشتری</label><input class="f num" name="sell" value="${it.price+30000000}"></div>
+          <div class="field"><label>زمان تحویل قول‌داده‌شده</label><select class="f" name="eta"><option>۳ روز کاری</option><option selected>۵ روز کاری</option><option>۷ روز کاری</option></select></div>
+        </div>
+        <div class="field" style="margin-top:14px"><label>توضیح برای دفتر مرکزی</label>
+          <textarea class="f" name="note" placeholder="مثلاً: مشتری امروز بیعانه می‌دهد، فقط رنگ مشکی می‌خواهد"></textarea></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div class="card raise">
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:13px">
+            <div class="thumb" style="width:72px;height:56px">${I.car}</div>
+            <div><div class="b">${it.model}</div><div class="xs faint">${it.year} · ${it.color} · ${it.id}</div></div>
+          </div>
+          <div class="kv"><span>قیمت شبکه</span><span class="num">${money(it.price)}</span></div>
+          <div class="kv"><span>بیعانه لازم (${fa(CFG.depositPct)}٪)</span><span class="num hl-num">${money(depositOf(it.price))}</span></div>
+          <div class="kv"><span>روش پرداخت</span><span>فقط ساتنا ${ref('satna')}</span></div>
+          <div class="kv"><span>مدت نوبت</span><span>${fa(CFG.holdMinutes)} دقیقه</span></div>
+          <button class="btn accent wide" style="margin-top:14px" data-act="submitRequest">${I.check} ثبت درخواست و شروع نوبت</button>
+        </div>
+        <div class="note warn">${I.alert}<div>تا وقتی بیعانه ننشسته، نه قیمت تضمین است و نه موجودی. اگر نمایندگی دیگری زودتر واریز کند، خودرو مال او می‌شود. ${ref('lock')}</div></div>
+      </div>
+    </div>
+  </div>`}},
+
+dealfile:{label:'پرونده معامله',nav:'cases',
+ why:'همه‌چیزِ یک معامله در یک صفحه: مرحله‌ها با مسئول و مهلت، وضعیت مالی، مدارک و ارتباط با دفتر مرکزی. همین صفحه بعداً مدرکِ حل اختلاف است، چون هر اتفاق با تاریخ و ساعت ثبت شده.',
+ ref:'قانون ۳ و ۴',
+ body:()=>{
+  const c=openCase();
+  if(!c)return `${topbar('پرونده معامله','',{search:false})}<div class="content"><div class="empty"><div class="ic">${I.folder}</div>پرونده‌ای باز نیست<button class="btn ghost sm" data-goto="network">جست‌وجوی خودرو</button></div></div>`;
+  const rem=c.price-c.paid, pct=Math.round(c.paid/c.price*100);
+  return `${topbar('پرونده #'+fa(c.id),`${c.model} · ${c.color} · مشتری: ${c.cust}`,{search:false,
+    actions:`${stagePill(c.stage)}`})}
+  <div class="content">
+    ${c.stage<6?`<div class="card raise" style="border-color:var(--accent-line);background:linear-gradient(90deg,var(--accent-soft),#fff 60%)">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--accent-line);display:grid;place-items:center;color:var(--accent);flex:none">${I.clock}</div>
+        <div style="flex:1;min-width:180px">
+          <div class="b" style="color:var(--accent)">${c.stage<2?'مهلت واریز بیعانه':'مهلت تسویه کامل'} ${ref('settle')}</div>
+          <div class="sm muted">${c.stage<2?'اگر بیعانه نرسد، خودرو خودکار آزاد می‌شود':'پس از پایان مهلت، پرونده خودکار فسخ و بیعانه مسترد می‌شود'}</div>
+        </div>
+        <div class="num eb" style="font-size:26px;color:var(--accent)" data-timer="${c.mins||1}">—</div>
+      </div>
+    </div>`:''}
+
+    <div class="split">
+      <div class="card raise">
+        <div class="eyebrow" style="margin-bottom:15px">مراحل معامله</div>
+        <div class="timeline">
+          ${STAGES.map((t,i)=>{
+            const st=i<c.stage?'done':i===c.stage?'now':'wait';
+            const sub=['ثبت‌شده توسط شعبه شما — '+c.created,'نوبت ۱ ساعته — قفل فقط با بیعانه',
+              `${money(depositOf(c.price))} تومان — ساتنا`,`${money(rem)} تومان باقی‌مانده`,
+              'زمان و محل را دفتر مرکزی اعلام می‌کند','بیمه حمل اجباری · مسئولیت مسیر با خریدار','صورتجلسه تحویل · تسویه کمیسیون'][i];
+            return `<div class="tl ${st}"><div class="dot">${st==='done'?I.check:fa(i+1)}</div>
+              <div class="txt"><div class="t1">${t}</div><div class="t2">${sub}</div></div></div>`}).join('')}
+        </div>
+        ${c.note?`<div class="note lock" style="margin-top:12px">${I.doc}<div><b>توضیح ثبت‌شده:</b> ${c.note}</div></div>`:''}
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div class="card raise">
+          <div class="cardhead" style="padding:0 0 11px"><h3 style="font-size:13.5px">وضعیت مالی</h3>
+            <span class="pill ${pct>=100?'ok':pct>0?'info':'gray'}">${fa(pct)}٪ پرداخت شد</span></div>
+          <div class="kv"><span>قیمت معامله</span><span class="num">${money(c.price)}</span></div>
+          <div class="kv"><span>پرداخت‌شده</span><span class="num" style="color:var(--ok)">${money(c.paid)}</span></div>
+          <div class="kv"><span>باقی‌مانده</span><span class="num" style="color:${rem?'var(--warn)':'var(--ok)'}">${money(rem)}</span></div>
+          <div class="kv"><span>کمیسیون شبکه</span><span class="num">${fa(CFG.commBuyer)}٪ سهم خریدار ${ref('comm')}</span></div>
+          <div class="bar" style="margin:11px 0 4px"><i style="width:${Math.max(3,pct)}%;background:${pct>=100?'var(--ok)':'var(--accent)'}"></i></div>
+          <div class="xs faint">قیمت مشتری شما: <span class="num">${money(c.sell)}</span> تومان</div>
+          ${c.stage<2?`<button class="btn accent wide" style="margin-top:12px" data-act="payDeposit">${I.bank} ثبت فیش بیعانه</button>`:
+            rem>0?`<button class="btn accent wide" style="margin-top:12px" data-act="paySettle">${I.bank} ثبت فیش تسویه</button>`:
+            `<div class="note" style="margin-top:12px">${I.check}<div>تسویه کامل انجام شده است.</div></div>`}
+        </div>
+        <div class="card">
+          <div class="eyebrow" style="margin-bottom:9px">مدارک پرونده</div>
+          <div class="kv"><span>فیش بیعانه</span><span style="color:${c.paid?'var(--ok)':'var(--faint)'}">${c.paid?'ثبت شد':'در انتظار'}</span></div>
+          <div class="kv"><span>صورتجلسه بارگیری</span><span style="color:${c.stage>=4?'var(--ok)':'var(--faint)'}">${c.stage>=4?'ثبت شد':'در انتظار'}</span></div>
+          <div class="kv"><span>صورتجلسه تحویل</span><span style="color:${c.stage>=6?'var(--ok)':'var(--faint)'}">${c.stage>=6?'ثبت شد':'در انتظار'}</span></div>
+        </div>
+        <div class="card" style="display:flex;align-items:center;gap:11px">
+          <div class="avatar" style="background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)">${I.shield}</div>
+          <div style="flex:1"><div class="b sm">دفتر مرکزی شبکه</div><div class="xs faint">تنها مرجع هماهنگی — ۹ تا ۱۸ ${ref('hours')}</div></div>
+          <button class="btn ghost sm" data-act="call">${I.phone} تماس</button>
+        </div>
+        <div style="display:flex;gap:9px">
+          <button class="btn ghost sm" style="flex:1" data-act="addNote">افزودن توضیح</button>
+          <button class="btn ghost sm" style="flex:1;color:var(--dan)" data-act="cancelCase">لغو پرونده</button>
+        </div>
+      </div>
+    </div>
+  </div>`}},
+
+cases:{label:'پرونده‌های من',nav:'cases',
+ why:'فهرست وضعیت‌محور: با یک نگاه معلوم است کدام پرونده معطل کار شماست و کدام منتظر طرف مقابل. ستون مهلت جای پیگیری تلفنی را می‌گیرد.',
+ ref:'مبنا: شفافیت وضعیت',
+ body:()=>{
+  const cs=myCases();
+  return `${topbar('پرونده‌های من',`${fa(cs.filter(c=>c.stage<6).length)} باز و ${fa(cs.filter(c=>c.stage>=6).length)} بسته‌شده`,{searchText:'شماره پرونده یا مدل…'})}
+  <div class="content">
+    <div class="chips">
+      <button class="chip" aria-pressed="true">همه</button><button class="chip">باز</button>
+      <button class="chip">منتظر اقدام من</button><button class="chip">بسته‌شده</button>
+    </div>
+    <div class="card pad0 raise">
+      <div class="tblwrap"><table>
+        <thead><tr><th>پرونده</th><th>خودرو</th><th>نقش شما</th><th>مشتری</th><th>مبلغ (تومان)</th><th>مرحله</th><th>مهلت</th><th></th></tr></thead>
+        <tbody>${cs.map(c=>`<tr class="${c.id===CASE_ID?'hl':''}">
+          <td class="num b">#${fa(c.id)}</td><td>${c.model}</td>
+          <td>${c.buyer===ME?'<span class="tag-inline">خریدار</span>':'<span class="tag-inline">فروشنده</span>'}</td>
+          <td>${c.buyer===ME?c.cust:'<span class="lockmark">'+I.lock+' پنهان</span>'}</td>
+          <td class="num">${money(c.sell)}</td><td>${stagePill(c.stage)}</td>
+          <td class="num b">${c.mins?`<span data-timer="${c.mins}">—</span>`:'<span class="faint">—</span>'}</td>
+          <td><button class="btn ${c.stage<6?'accent':'ghost'} sm" data-act="openCase" data-id="${c.id}">${c.stage<6?'ادامه':'مشاهده'}</button></td></tr>`).join('')}
+        </tbody>
+      </table></div>
+    </div>
+  </div>`}},
+
+inventory:{label:'موجودی شعبه',nav:'inventory',
+ why:'اینجا موجودی شعبه خودتان را می‌بینید و <b>واقعاً ویرایش می‌کنید</b>: قیمت، مشخصات، نمایش در شبکه یا خارج کردن از آن، و ثبت فروش حضوری. ستون ماندگاری هم سرمایه خوابیده را نشان می‌دهد.',
+ ref:'تصمیم q17 — ثبت فروش حداکثر ۱ ساعت',
+ body:()=>{
+  const inv=myInv();
+  return `${topbar('موجودی شعبه ونک',`${fa(inv.length)} دستگاه ثبت‌شده — آخرین به‌روزرسانی: امروز ۰۹:۱۲`,{searchText:'مدل یا شماره شاسی…',
+    actions:`<button class="btn accent sm" data-goto="addcar">${I.plus} ثبت جدید</button>`})}
+  <div class="content">
+    <div class="grid g4">
+      <div class="card kpi"><div class="l">در شبکه</div><div class="v num" style="color:var(--ok)">${fa(inv.filter(i=>i.st==='net').length)}</div></div>
+      <div class="card kpi"><div class="l">خارج از شبکه</div><div class="v num">${fa(inv.filter(i=>i.st==='off').length)}</div></div>
+      <div class="card kpi"><div class="l">قفل‌شده</div><div class="v num">${fa(inv.filter(i=>i.st==='lock').length)}</div></div>
+      <div class="card kpi"><div class="l">راکد بالای ۳۰ روز</div><div class="v num" style="color:var(--warn)">${fa(inv.filter(i=>i.days>30).length)}</div></div>
+    </div>
+
+    <div class="card pad0 raise">
+      <div class="cardhead"><h3>فهرست موجودی — قابل ویرایش</h3>
+        <span class="cap">برای ویرایش هر ردیف، دکمه مداد را بزنید</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>خودرو</th><th>شناسه</th><th>رنگ</th><th>قیمت (تومان)</th><th>ماندگاری</th><th>وضعیت بدنه</th><th>در شبکه</th><th>عملیات</th></tr></thead>
+        <tbody>${inv.map(it=>`<tr>
+          <td><div class="b">${it.model}</div><div class="xs faint num">${it.vin}</div></td>
+          <td class="num faint">${it.id}</td><td>${it.color}</td>
+          <td class="num b">${money(it.price)}</td>
+          <td class="num ${it.days>30?'':''}" ${it.days>30?'style="color:var(--warn);font-weight:700"':''}>${fa(it.days)} روز</td>
+          <td class="xs">${it.body}</td>
+          <td>${it.st==='lock'?'<span class="pill info"><span class="sd"></span>قفل معامله</span>':
+             `<button class="tgl" data-act="toggleNet" data-id="${it.id}" aria-pressed="${it.st==='net'}" title="نمایش در شبکه"></button>`}</td>
+          <td><div class="rowact">
+            <button class="btn ghost sm" data-act="editItem" data-id="${it.id}" title="ویرایش">${I.edit}</button>
+            ${it.st!=='lock'?`<button class="btn ghost sm" data-act="sellItem" data-id="${it.id}" title="ثبت فروش حضوری">${I.bank}</button>
+            <button class="btn ghost sm" data-act="delItem" data-id="${it.id}" title="حذف" style="color:var(--dan)">${I.trash}</button>`:''}
+          </div></td></tr>`).join('')}
+        </tbody>
+      </table></div>
+    </div>
+    <div class="note warn">${I.alert}<div>فروش حضوری را حداکثر تا <b>۱ ساعت</b> بعد اینجا ثبت کنید. سه بار «موجودی غلط» یعنی تعلیق نمایندگی از شبکه. ${ref('wrong')}</div></div>
+  </div>`}},
+
+addcar:{label:'ثبت خودرو',nav:'addcar',
+ why:'فیلدهای حساس اجباری‌اند: شماره شاسی (تا یک خودرو دو بار در شبکه ثبت نشود) و اعلام صادقانه هر ایراد ظاهری. چون ثبت در شبکه یعنی تعهد فروش، نه آگهی.',
+ ref:'قانون ۱ + اطلاعات اجباری',
+ body:()=>`${topbar('ثبت خودرو یا حواله','موجودی شعبه ونک',{search:false})}
+ <div class="content">
+   <div class="split">
+     <div class="card raise">
+       <div class="chips" style="margin-bottom:17px">
+         <button class="chip" aria-pressed="true">خودروی موجود</button>
+         <button class="chip">حواله ${ref('havaleh')}</button>
+       </div>
+       <div class="eyebrow" style="margin-bottom:12px">مشخصات</div>
+       <div class="grid g2">
+         <div class="field"><label>مدل و تیپ *</label><select class="f" name="model"><option value="">انتخاب کنید…</option>${MODELS.map(m=>`<option>${m}</option>`).join('')}</select></div>
+         <div class="field"><label>رنگ</label><select class="f" name="color">${COLORS.map(c=>`<option>${c}</option>`).join('')}</select></div>
+         <div class="field"><label>سال ساخت</label><input class="f num" name="year" value="۱۴۰۳"></div>
+         <div class="field"><label>قیمت فروش شما *</label><input class="f num" name="price" placeholder="مثلاً ۱۵۵۰۰۰۰۰۰۰"><span class="hint">قیمت مقطوع — بدون تخفیف</span></div>
+         <div class="field" style="grid-column:1/-1"><label>شماره شاسی (VIN) *</label><input class="f" name="vin" placeholder="۱۷ رقم"><span class="hint">برای جلوگیری از ثبت تکراری یک خودرو در شبکه</span></div>
+       </div>
+       <div class="eyebrow" style="margin:18px 0 12px">وضعیت</div>
+       <div class="field"><label>وضعیت بدنه — هر خط و خش را بنویسید *</label>
+         <textarea class="f" name="body" placeholder="مثلاً: خش سطحی روی سپر عقب، بدون رنگ‌شدگی"></textarea></div>
+       <div class="field" style="margin-top:13px"><label>وضعیت مدارک *</label>
+         <select class="f" name="docs"><option>کامل</option><option>ناقص</option></select></div>
+     </div>
+
+     <div style="display:flex;flex-direction:column;gap:13px">
+       <div class="card raise">
+         <div class="eyebrow" style="margin-bottom:4px">عکس‌ها — حداقل ۵ عدد * ${ref('photos')}</div>
+         <div class="cap" style="margin-bottom:12px">۴ عکس از بیرون + ۱ عکس از داخل</div>
+         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px">
+           <div class="thumb" style="height:64px">${I.car}</div><div class="thumb" style="height:64px">${I.car}</div>
+           <button class="thumb" style="height:64px;background:var(--surface);border:1px dashed var(--line);color:var(--muted)" data-act="addPhoto">${I.camera}</button>
+         </div>
+       </div>
+       <div class="note warn">${I.alert}<div>خودرویی که ثبت می‌کنید باید واقعاً آماده واگذاری باشد؛ پس از ثبت، حق رد کردن درخواست ندارید. ${ref('commit')}</div></div>
+       <button class="btn accent wide" data-act="saveNew">${I.check} ثبت در شبکه</button>
+       <button class="btn ghost wide" data-act="draft">ذخیره پیش‌نویس</button>
+     </div>
+   </div>
+ </div>`},
+
+perf:{label:'عملکرد شعبه',nav:'perf',
+ why:'همان کارنامه‌ای که دفتر مرکزی و صاحب امتیاز می‌بینند، اینجا هم به خود شعبه نشان داده می‌شود — چون قرار است پاداش کارکنان به همین عددها وصل باشد.',
+ ref:'قانون ۱۰ — پاداش وصل به سامانه',
+ body:()=>`${topbar('عملکرد شعبه ونک','هفته منتهی به ۲ مرداد',{search:false,actions:`<button class="btn ghost sm" data-act="export">${I.doc} خروجی</button>`})}
+ <div class="content">
+   <div class="grid g4">
+     <div class="card kpi raise"><div class="l">معامله موفق</div><div class="v num" style="color:var(--ok)">۴</div>
+       <div class="d" style="color:var(--ok)">${I.up} ۲ بیشتر از هفته قبل</div>${spark([1,2,1,3,2,4,4],'#1B8A5F','rgba(27,138,95,.12)')}</div>
+     <div class="card kpi raise"><div class="l">قفل ناموفق</div><div class="v num">۰</div>
+       <div class="d faint">بدون مورد</div>${spark([1,0,1,0,0,0,0],'#6B7F93','rgba(107,127,147,.1)')}</div>
+     <div class="card kpi raise"><div class="l">موجودی به‌روز</div><div class="v num" style="color:var(--ok)">۱۰۰٪</div>
+       <div class="d faint">بدون تخلف ${ref('wrong')}</div>${spark([90,95,98,100,100,100,100],'#1B8A5F','rgba(27,138,95,.12)')}</div>
+     <div class="card kpi raise"><div class="l">تسویه به‌موقع</div><div class="v num">۱۰۰٪</div>
+       <div class="d faint">۴ از ۴ معامله</div>${spark([80,90,100,100,100,100,100],'#0F6EA3','rgba(15,110,163,.1)')}</div>
+   </div>
+   <div class="split">
+     <div class="card raise">
+       <div class="cardhead" style="padding:0 0 12px"><h3>روند فروش ۶ هفته اخیر</h3><span class="pill ok">رتبه ۱ از ۶ شعبه</span></div>
+       ${bars([['هفته ۱',1],['هفته ۲',2],['هفته ۳',1],['هفته ۴',3],['هفته ۵',2],['این هفته',4]],'#0F6EA3')}
+     </div>
+     <div class="card raise">
+       <div class="eyebrow" style="margin-bottom:12px">جمع‌بندی ماه</div>
+       <div class="kv"><span>خرید از شبکه</span><span class="num">۲ دستگاه</span></div>
+       <div class="kv"><span>فروش موجودی خودتان</span><span class="num">۲ دستگاه</span></div>
+       <div class="kv"><span>کمیسیون پرداختی</span><span class="num">۲۳٬۴۰۰٬۰۰۰</span></div>
+       <div class="kv"><span>میانگین زمان تسویه</span><span class="num">۹ ساعت</span></div>
+       <div class="note" style="margin-top:13px">${I.shield}<div>کارنامه شما هفتگی برای صاحب امتیاز ارسال می‌شود. ${ref('force')}</div></div>
+     </div>
+   </div>
+ </div>`}
+};
+const ORDER=['dash','network','carpage','customerview','request','dealfile','cases','inventory','addcar','perf'];
+mountRouter(S,ORDER,SIDE,'dash',ACT);
+</script>
+</body>
+</html>
