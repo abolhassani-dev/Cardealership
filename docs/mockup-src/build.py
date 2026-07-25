@@ -12,7 +12,7 @@ css  = (B/'ds.css').read_text(encoding='utf-8')
 core = (B/'core.js').read_text(encoding='utf-8')
 data = (B/'data.js').read_text(encoding='utf-8')
 
-TARGETS = {'dealer.html':'mockup-desktop.html','admin.html':'mockup-admin.html','mobile.html':'mockup.html'}
+TARGETS = {'dealer.html':'panel.html','admin.html':'admin.html','mobile.html':'mobile.html'}
 
 for src, dst in TARGETS.items():
     p = B/src
